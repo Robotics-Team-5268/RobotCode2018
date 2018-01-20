@@ -22,7 +22,14 @@
 #define DRIVE_SPEED_CONTROLLER_BL_CHANNEL 2
 #define DRIVE_SPEED_CONTROLLER_BR_CHANNEL 3
 
-#define GYRO_SPI_PORT 							SPI::kOnboardCS0_
+// SPI is the better gyro, ANALOG is worse, but used on test bot.
+//#define GYRO_SPI_PORT 							SPI::kOnboardCS0_
+#define GYRO_ANALOG_PORT 0
+
+#define SCFL_INVERTED false
+#define SCBL_INVERTED false
+#define SCFR_INVERTED true
+#define SCBR_INVERTED true
 
 #define CAMERA_XRES 640
 #define CAMERA_YRES 480

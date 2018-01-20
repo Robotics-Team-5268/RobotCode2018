@@ -19,7 +19,7 @@ private:
 	float oldX, oldY;
 	const float MAX_CHANGE = .05;
 
-	//std::shared_ptr<AnalogGyro> gyro;
+	std::shared_ptr<AnalogGyro> gyro;
 
 
 public:

@@ -12,16 +12,16 @@ Drive::Drive() : Subsystem("Drive") {
 	speedControllerBL = RobotMap::speedControllerBL;
 	speedControllerBR = RobotMap::speedControllerBR;
 	robotDrive4 = RobotMap::driveRobotDrive4;
-	//gyro = RobotMap::driveGyro;
+	gyro = RobotMap::driveGyro;
 
 }
-void Drive::InitDefaultCommand(){
+void Drive::InitDefaultCommand() {
 	//set the default command
 	SetDefaultCommand(new DriveWithJoystick());
 }
-void Drive::takeInput(){ //takes input from controller to drive robot in teleop
-	float X = -CommandBase::oi->getDriverJoystick()->GetX();
-	float Y = -CommandBase::oi->getDriverJoystick()->GetY();
+void Drive::takeInput() { //takes input from controller to drive robot in teleop
+	float X = CommandBase::oi->getDriverJoystick()->GetX();
+	float Y = CommandBase::oi->getDriverJoystick()->GetY();
 
 	// Limit the acceleration of the robot.
 	// This is done to prevent brownouts.
@@ -30,16 +30,20 @@ void Drive::takeInput(){ //takes input from controller to drive robot in teleop
 	if (Y > oldY + MAX_CHANGE) Y = oldY + MAX_CHANGE;
 	else if (Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
 
-	robotDrive4->ArcadeDrive(Y,X);
+	robotDrive4->ArcadeDrive(X,Y);// works, X and Y are swapped
 
 	// Store these values for next time.
 	oldX = X;
 	oldY = Y;
 }
-void Drive::setMotors(float leftSpeed, float rightSpeed){}
-AnalogGyro* Drive::getGyro()
-{
-	//return gyro.get();
+void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration limit to reduce gear box wear and tear
+	speedControllerFL->Set(leftSpeed);
+	speedControllerFR->Set(rightSpeed);
+	speedControllerBL->Set(leftSpeed);
+	speedControllerBR->Set(rightSpeed);
+}
+AnalogGyro* Drive::getGyro() {
+	return gyro.get();
 	return nullptr;
 }
 Drive::~Drive() {

@@ -37,7 +37,13 @@ void RobotMap::init() {// resets all the speed controllers and other hardware co
    	driveRobotDrive4->SetSensitivity(0.5);
    	driveRobotDrive4->SetMaxOutput(1.0);
 
-   	//driveGyro.reset(new AnalogGyro(0));
-   	//driveGyro->Calibrate();
+	speedControllerFL->SetInverted(SCFL_INVERTED);
+	speedControllerBL->SetInverted(SCBL_INVERTED);
+	speedControllerFR->SetInverted(SCFR_INVERTED);
+	speedControllerBR->SetInverted(SCBR_INVERTED);
+
+   	//driveGyro.reset(new ADXRS450_Gyro(SPI::kOnboardCS0));
+   	driveGyro.reset(new AnalogGyro(GYRO_ANALOG_PORT));
+   	driveGyro->Calibrate();
 }
 
