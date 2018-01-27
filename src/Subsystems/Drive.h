@@ -16,7 +16,7 @@ private:
 	std::shared_ptr<SpeedController> speedControllerBL;
 	std::shared_ptr<SpeedController> speedControllerBR;
 
-	float oldX, oldY;
+	float oldX, oldY, oldLeftSpeed, oldRightSpeed;
 	const float MAX_CHANGE = .05;
 
 	std::shared_ptr<AnalogGyro> gyro;

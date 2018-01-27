@@ -7,6 +7,8 @@
 
 std::unique_ptr<Autonomous> Robot::autonomousCommand;
 
+Ramp Robot::ramp;
+
 	void Robot::RobotInit(){// initializes the main things needed for the robot to run.
 		// runs when the robot starts.
 		RobotMap::init();
@@ -44,17 +46,17 @@ std::unique_ptr<Autonomous> Robot::autonomousCommand;
 	void Robot::TeleopInit() {// runs when the teleop portion of the game starts.
 		CommandBase::drive->getGyro()->Reset();
 
+		REVDigitBoard digitBoard;
+		digitBoard.display("Plus");
+		//SmartDashboard::PutNumber("Digit Board Test A Button", digitBoard.getButtonA());
+		//SmartDashboard::PutNumber("Digit Board Test B Button", digitBoard.getButtonB());
+		//SmartDashboard::PutNumber("Digit Board Test Pot", digitBoard.getPot());
 	}
 
 	void Robot::TeleopPeriodic() { //continuously runs during teleop portion of the game.
 		frc::Scheduler::GetInstance()->Run();
 		AddSmartDashboardItems();
 
-		REVDigitBoard digitBoard;
-		//digitBoard.display("Plus");
-		SmartDashboard::PutNumber("Digit Board Test A Button", digitBoard.getButtonA());
-		SmartDashboard::PutNumber("Digit Board Test B Button", digitBoard.getButtonB());
-		SmartDashboard::PutNumber("Digit Board Test Pot", digitBoard.getPot());
 	}
 
 	void Robot::TestPeriodic() {}
@@ -69,6 +71,9 @@ std::unique_ptr<Autonomous> Robot::autonomousCommand;
 		SmartDashboard::PutNumber("Joystick Y", CommandBase::oi->getDriverJoystick()->GetY());
 		SmartDashboard::PutNumber("Left Trigger", CommandBase::oi->getDriverJoystick()->GetRawAxis(LEFT_TRIGGER));
 		SmartDashboard::PutNumber("Right Trigger", CommandBase::oi->getDriverJoystick()->GetRawAxis(RIGHT_TRIGGER));
+		SmartDashboard::PutNumber("upperRampSC", ramp.getUpperRampSC());
+		SmartDashboard::PutNumber("lowerRampSC", ramp.getLowerRampSC());
+		SmartDashboard::PutNumber("intakeRampSC", ramp.getIntakeRampSC());
 	}
 
 START_ROBOT_CLASS(Robot)

@@ -3,30 +3,30 @@
 #include "PIDController.h"
 #include "SpeedController.h"
 
-
+// for driving motors
 std::shared_ptr<SpeedController> RobotMap::speedControllerFL;
 std::shared_ptr<SpeedController> RobotMap::speedControllerFR;
 std::shared_ptr<SpeedController> RobotMap::speedControllerBL;
 std::shared_ptr<SpeedController> RobotMap::speedControllerBR;
+
+// for ramp motors, These are actually PWM's, not Speed Controllers
+std::shared_ptr<SpeedController> RobotMap::upperRampSC;
+std::shared_ptr<SpeedController> RobotMap::lowerRampSC;
+std::shared_ptr<SpeedController> RobotMap::intakeRampSC;
 
 std::shared_ptr<RobotDrive> RobotMap::driveRobotDrive4;
 
 std::shared_ptr<AnalogGyro> RobotMap::driveGyro;
 
 void RobotMap::init() {// resets all the speed controllers and other hardware components.
-    LiveWindow *lw = LiveWindow::GetInstance();
-
     speedControllerFL.reset(new Talon(DRIVE_SPEED_CONTROLLER_FL_CHANNEL));
-    // lw->AddActuator("Drive",  "Speed Controller FL", (TalonSRX&) speedControllerFL);
-
     speedControllerFR.reset(new Talon(DRIVE_SPEED_CONTROLLER_FR_CHANNEL));
-    // lw->AddActuator("Drive", "Speed Controller FR", (TalonSRX&) speedControllerFR);
-
     speedControllerBL.reset(new Talon(DRIVE_SPEED_CONTROLLER_BL_CHANNEL));
-    // lw->AddActuator("Drive", "Speed Controller BL", (TalonSRX&) speedControllerBL);
-
     speedControllerBR.reset(new Talon(DRIVE_SPEED_CONTROLLER_BR_CHANNEL));
-    // lw->AddActuator("Drive", "Speed Controller BR", (TalonSRX&) speedControllerBR);
+
+    upperRampSC.reset(new Talon(RAMP_SPEED_CONTROLLER_UPPER_CHANNEL));
+	lowerRampSC.reset(new Talon(RAMP_SPEED_CONTROLLER_LOWER_CHANNEL));
+    intakeRampSC.reset(new Talon(RAMP_SPEED_CONTROLLER_INTAKE_CHANNEL));
 
     driveRobotDrive4.reset(new RobotDrive(speedControllerFL, speedControllerBL,
                  speedControllerFR, speedControllerBR));

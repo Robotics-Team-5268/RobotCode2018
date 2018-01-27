@@ -10,7 +10,7 @@ Autonomous::Autonomous(int selection) : CommandGroup("Autonomous") {
 	switch(selection){
 	case 1: //right
 		AddSequential(new Move(1, .25));
-		if(gameData[0] == 'L')
+		if(gameData[0] == 'L') // if left
 		{
 			AddSequential(new Rotate(-15));
 		} else {

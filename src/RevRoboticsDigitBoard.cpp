@@ -164,7 +164,7 @@ REVDigitBoard::REVDigitBoard()
 	void REVDigitBoard::_display( byte charz[4]) {
 		byte byte1[10];
 		byte1[0] = (byte)(0b00001111);
-		byte1[1] = (byte)(0b00001111);
+		byte1[1] = 0; //(byte)(0b00001111);
  		byte1[2] = charreg[charz[3]][0];
  		byte1[3] = charreg[charz[3]][1];
  		byte1[4] = charreg[charz[2]][0];

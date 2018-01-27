@@ -13,7 +13,6 @@ Drive::Drive() : Subsystem("Drive") {
 	speedControllerBR = RobotMap::speedControllerBR;
 	robotDrive4 = RobotMap::driveRobotDrive4;
 	gyro = RobotMap::driveGyro;
-
 }
 void Drive::InitDefaultCommand() {
 	//set the default command
@@ -37,10 +36,21 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	oldY = Y;
 }
 void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration limit to reduce gear box wear and tear
+	// Limits acceleration to prevent jerky motion and brownouts
+	if (leftSpeed > oldLeftSpeed + MAX_CHANGE) leftSpeed = oldLeftSpeed + MAX_CHANGE;
+	else if (leftSpeed < oldLeftSpeed - MAX_CHANGE) leftSpeed = oldLeftSpeed - MAX_CHANGE;
+	if (rightSpeed > oldRightSpeed + MAX_CHANGE) rightSpeed = oldRightSpeed + MAX_CHANGE;
+	else if (rightSpeed < oldRightSpeed - MAX_CHANGE) rightSpeed = oldRightSpeed - MAX_CHANGE;
+
+	// set motor speeds
 	speedControllerFL->Set(leftSpeed);
 	speedControllerFR->Set(rightSpeed);
 	speedControllerBL->Set(leftSpeed);
 	speedControllerBR->Set(rightSpeed);
+
+	// Store these values for next time.
+	oldLeftSpeed = leftSpeed;
+	oldRightSpeed = rightSpeed;
 }
 AnalogGyro* Drive::getGyro() {
 	return gyro.get();

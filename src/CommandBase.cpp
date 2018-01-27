@@ -5,6 +5,7 @@
 // Initialize a single static instance of all of your subsystems to NULL
 std::unique_ptr<OI> CommandBase::oi;
 std::unique_ptr<Drive> CommandBase::drive;
+std::unique_ptr<Ramp> CommandBase::ramp;
 
 
 CommandBase::CommandBase(const std::string &name) :
