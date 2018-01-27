@@ -8,13 +8,17 @@
 #include <Commands/Command.h>
 
 class Intake: public frc::Command {
+private:
+	float oldVal, newVal = .25;
+	const float MAX_CHANGE = .01;
 public:
 	typedef enum {
 		intakeForward,
 		intakeReverse
 	} intakeDirection;
 
-	Intake(intakeDirection dir);
+	Intake(intakeDirection dir, float Value);
+	virtual void Execute();
 	virtual void Initialize();
 	virtual bool IsFinished();
 	virtual void End();

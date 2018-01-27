@@ -23,7 +23,7 @@ REVDigitBoard::REVDigitBoard()
 		Wait(.01);
 		i2c.WriteBulk(&bright, 1);
 		Wait(.01);
-		//i2c.WriteBulk(&blink, 1);
+		i2c.WriteBulk(&blink, 1);
 		Wait(.01);
 
 		charreg[0][0] = (byte)0b00111111; charreg[9][1] = (byte)0b00000000; //0

@@ -8,16 +8,24 @@
 #include "Commands/RampDown.h"
 #include "../Robot.h"
 
-RampDown::RampDown()
+RampDown::RampDown(float Value)
 	: frc::Command("RampUp") {
 	Requires(&Robot::ramp);
 	SetTimeout(3);
+	oldVal = 0.0;
+	newVal = Value;
 }
 
 void RampDown::Initialize() {
-	Robot::ramp.UpperDown();
-	Robot::ramp.LowerDown();
-	Robot::ramp.IntakeReverse();
+}
+
+void RampDown::Execute() {
+	float curVal = newVal;
+	if (curVal < oldVal - MAX_CHANGE) curVal = oldVal - MAX_CHANGE;
+	Robot::ramp.UpperDown(curVal);
+	Robot::ramp.LowerDown(curVal);
+	Robot::ramp.IntakeOn(curVal);
+	oldVal = curVal;
 }
 
 bool RampDown::IsFinished() {
@@ -28,6 +36,7 @@ void RampDown::End() {
 	Robot::ramp.UpperStop();
 	Robot::ramp.LowerStop();
 	Robot::ramp.IntakeOff();
+	oldVal = 0.0;
 }
 
 RampDown::~RampDown() {

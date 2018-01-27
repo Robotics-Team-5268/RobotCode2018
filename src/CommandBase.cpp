@@ -1,6 +1,5 @@
 #include "CommandBase.h"
 #include "Commands/Scheduler.h"
-#include "OI.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
 std::unique_ptr<OI> CommandBase::oi;
@@ -24,6 +23,7 @@ void CommandBase::init()
 	drive.reset(new Drive());
 	// Keep at the end
 	oi.reset(new OI());
+	ramp.reset(new Ramp());
 }
 
 

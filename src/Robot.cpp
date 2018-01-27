@@ -4,6 +4,7 @@
 
 #include <Commands/Scheduler.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <RobotController.h>
 
 std::unique_ptr<Autonomous> Robot::autonomousCommand;
 
@@ -47,7 +48,7 @@ Ramp Robot::ramp;
 		CommandBase::drive->getGyro()->Reset();
 
 		REVDigitBoard digitBoard;
-		digitBoard.display("Plus");
+		digitBoard.display(RobotController::GetInputVoltage());
 		//SmartDashboard::PutNumber("Digit Board Test A Button", digitBoard.getButtonA());
 		//SmartDashboard::PutNumber("Digit Board Test B Button", digitBoard.getButtonB());
 		//SmartDashboard::PutNumber("Digit Board Test Pot", digitBoard.getPot());

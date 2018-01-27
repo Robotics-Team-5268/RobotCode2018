@@ -13,6 +13,11 @@ Drive::Drive() : Subsystem("Drive") {
 	speedControllerBR = RobotMap::speedControllerBR;
 	robotDrive4 = RobotMap::driveRobotDrive4;
 	gyro = RobotMap::driveGyro;
+	oldX = 0.0;
+	oldY = 0.0;
+	oldLeftSpeed = 0.0;
+	oldRightSpeed = 0.0;
+
 }
 void Drive::InitDefaultCommand() {
 	//set the default command

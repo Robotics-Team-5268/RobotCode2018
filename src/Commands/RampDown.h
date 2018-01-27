@@ -11,8 +11,12 @@
 #include <Commands/Command.h>
 
 class RampDown: public frc::Command {
+private:
+	float oldVal, newVal;
+	const float MAX_CHANGE = 0.01;
 public:
-	RampDown();
+	RampDown(float Value);
+	virtual void Execute();
 	virtual void Initialize();
 	virtual bool IsFinished();
 	virtual void End();

@@ -34,37 +34,33 @@ double Ramp::getIntakeRampSC() {
 	return intakeRampSC.Get();
 }
 
-void Ramp::UpperUp() {
-	upperRampSC.Set(0.25);
+void Ramp::UpperUp(float Value) {
+	upperRampSC.Set(Value);
 	SmartDashboard::PutNumber("UpperUp", 1.0);
 }
 
-void Ramp::UpperDown() {
-	upperRampSC.Set(-0.25);
+void Ramp::UpperDown(float Value) {
+	upperRampSC.Set(Value);
 }
 
 void Ramp::UpperStop() {
 	upperRampSC.Set(0.0);
 }
 
-void Ramp::LowerUp() {
-	lowerRampSC.Set(0.25);
+void Ramp::LowerUp(float Value) {
+	lowerRampSC.Set(Value);
 }
 
-void Ramp::LowerDown() {
-	lowerRampSC.Set(-0.25);
+void Ramp::LowerDown(float Value) {
+	lowerRampSC.Set(Value);
 }
 
 void Ramp::LowerStop() {
 	lowerRampSC.Set(0.0);
 }
 
-void Ramp::IntakeOn() {
-	intakeRampSC.Set(0.25);
-}
-
-void Ramp::IntakeReverse() {
-	intakeRampSC.Set(-0.25);
+void Ramp::IntakeOn(float Value) {
+	intakeRampSC.Set(Value);
 }
 
 void Ramp::IntakeOff() {

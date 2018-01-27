@@ -4,6 +4,8 @@
 #include "Commands/RampUp.h"
 #include "Commands/RampDown.h"
 #include "Commands/Intake.h"
+#include "Subsystems/Ramp.h"
+#include "Robot.h"
 
 
 OI::OI() {
@@ -15,10 +17,14 @@ OI::OI() {
 		   driverBtns.push_back(new JoystickButton(driverJoystick.get(), i));
 	   }
 
-	   driverBtns[0]->WhenPressed(new RampUp());
-	   driverBtns[1]->WhenPressed(new RampDown());
-	   driverBtns[2]->WhenPressed(new Intake(Intake::intakeForward));
-	   driverBtns[3]->WhenPressed(new Intake(Intake::intakeReverse));
+	   //driverBtns[0]->WhenPressed(new RampUp());
+	   //driverBtns[1]->WhenPressed(new RampDown());
+	   //driverBtns[2]->WhenPressed(new Intake(Intake::intakeForward));
+	   //driverBtns[3]->WhenPressed(new Intake(Intake::intakeReverse));
+	   driverBtns[0]->WhileHeld(new RampUp(0.25));
+	   driverBtns[1]->WhileHeld(new RampDown(-0.25));
+	   driverBtns[2]->WhileHeld(new Intake(Intake::intakeForward, 0.25));
+	   driverBtns[3]->WhileHeld(new Intake(Intake::intakeReverse, -0.25));
 }
 
 std::shared_ptr<Joystick> OI::getDriverJoystick() {
