@@ -1,4 +1,4 @@
-
+#include "AutonomousChooser.h"
 #include "Autonomous.h"
 #include "Commands/Move.h"
 #include "Commands/Rotate.h"

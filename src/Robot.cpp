@@ -8,6 +8,7 @@
 
 std::unique_ptr<Autonomous> Robot::autonomousCommand;
 
+AutonomousChooser Robot::AutoChooser;
 Ramp Robot::ramp;
 
 	void Robot::RobotInit(){// initializes the main things needed for the robot to run.
@@ -16,13 +17,13 @@ Ramp Robot::ramp;
 		CommandBase::init();
 
 		CommandBase::drive->safetyOff();
-
+/*
 		autonomousChooser.reset(new SendableChooser<int*>());
 		autonomousChooser->AddDefault("Right", new int(1));
 		autonomousChooser->AddObject("Center", new int(2));
 		autonomousChooser->AddObject("Left", new int(3));
 		SmartDashboard::PutData("Autonomous", autonomousChooser.get());
-
+*/
 
 	}
 
@@ -34,8 +35,8 @@ Ramp Robot::ramp;
 
 	void Robot::AutonomousInit() {// runs when the autonomous portion of the game starts.
 		RobotMap::driveGyro->Reset();
-		int* selection = autonomousChooser->GetSelected();
-		autonomousCommand.reset(new Autonomous(*selection));
+		//int* selection = autonomousChooser->GetSelected();
+		autonomousCommand.reset(new Autonomous(AutoChooser.AutonomousSelection()));
 		autonomousCommand->Start();
 	}
 
