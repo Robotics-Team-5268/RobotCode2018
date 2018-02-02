@@ -9,7 +9,7 @@ Autonomous::Autonomous(int selection) : CommandGroup("Autonomous") {
 	gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
 	switch(selection){
 	case 1: //right
-		AddSequential(new Move(1, .25));
+		AddSequential(new Move(3, .5));
 		if(gameData[0] == 'L') // if left
 		{
 			AddSequential(new Rotate(-15));
@@ -27,7 +27,7 @@ Autonomous::Autonomous(int selection) : CommandGroup("Autonomous") {
 		}
 		break;
 	case 3: //left
-		AddSequential(new Move(1, .75));
+		AddSequential(new Move(1, .5));
 		if(gameData[0] == 'L')
 		{
 			AddSequential(new Rotate(-90));

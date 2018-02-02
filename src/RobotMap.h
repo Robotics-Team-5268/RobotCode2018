@@ -9,6 +9,7 @@
 
 #include <SpeedControllerGroup.h>
 #include <SpeedController.h>
+#include <Drive/DifferentialDrive.h>
 
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
@@ -33,8 +34,8 @@
 
 #define SCFL_INVERTED false
 #define SCBL_INVERTED false
-#define SCFR_INVERTED true
-#define SCBR_INVERTED true
+#define SCFR_INVERTED false
+#define SCBR_INVERTED false
 
 #define CAMERA_XRES 640
 #define CAMERA_YRES 480
@@ -56,17 +57,17 @@
 class RobotMap {
 public:
 	// driving motors
-	static std::shared_ptr<SpeedController> speedControllerFL; // Front Left
+	/*static std::shared_ptr<SpeedController> speedControllerFL; // Front Left
 	static std::shared_ptr<SpeedController> speedControllerFR; // Front Right
 	static std::shared_ptr<SpeedController> speedControllerBL; // Back Left
-	static std::shared_ptr<SpeedController> speedControllerBR; // Back Right
+	static std::shared_ptr<SpeedController> speedControllerBR; // Back Right*/
 
 	// ramp motors
 	static std::shared_ptr<SpeedController> upperRampSC;
 	static std::shared_ptr<SpeedController> lowerRampSC;
 	static std::shared_ptr<SpeedController> intakeRampSC;
 
-	static std::shared_ptr<RobotDrive> driveRobotDrive4; // this is the variable for the drive system as a whole
+	//static std::shared_ptr<RobotDrive> driveRobotDrive4; // this is the variable for the drive system as a whole
 
 	static std::shared_ptr<AnalogGyro>driveGyro;
 

@@ -1,7 +1,12 @@
 #ifndef SRC_SUBSYSTEMS_DRIVE_H_
 #define SRC_SUBSYSTEMS_DRIVE_H_
-#include "Commands/Subsystem.h"
-#include "WPILib.h"
+#include <Commands/Subsystem.h>
+#include <WPILib.h>
+#include <Drive/DifferentialDrive.h>
+#include <SpeedController.h>
+#include <SpeedControllerGroup.h>
+#include <Talon.h>
+#include "RobotMap.h"
 
 //this class controls all the systems for driving. it does not take input from the controller.
 
@@ -11,26 +16,30 @@ private:
 	// for methods that implement subsystem capabilities
 
 	// initializes speed controllers for Drive to use
-	std::shared_ptr<SpeedController> speedControllerFL;
-	std::shared_ptr<SpeedController> speedControllerFR;
-	std::shared_ptr<SpeedController> speedControllerBL;
-	std::shared_ptr<SpeedController> speedControllerBR;
+	frc::Talon speedControllerFL{DRIVE_SPEED_CONTROLLER_FL_CHANNEL};
+	frc::Talon speedControllerBL{DRIVE_SPEED_CONTROLLER_BL_CHANNEL};
+	frc::SpeedControllerGroup leftSC{speedControllerFL, speedControllerBL};
 
+	frc::Talon speedControllerFR{DRIVE_SPEED_CONTROLLER_FR_CHANNEL};
+	frc::Talon speedControllerBR{DRIVE_SPEED_CONTROLLER_BR_CHANNEL};
+	frc::SpeedControllerGroup rightSC{speedControllerFR, speedControllerBR};
+
+	frc::DifferentialDrive diffDrive{leftSC, rightSC};
 	float oldX, oldY, oldLeftSpeed, oldRightSpeed;
 	const float MAX_CHANGE = .05;
 
 	std::shared_ptr<AnalogGyro> gyro;
 
-
 public:
 	Drive();
-	void safetyOff(){robotDrive4->SetSafetyEnabled(false);}
+	~Drive();
+	void safetyOff(){diffDrive.SetSafetyEnabled(false);}
+	//void safetyOff(){robotDrive4->SetSafetyEnabled(false);}
 	void InitDefaultCommand();
 	AnalogGyro* getGyro();
 	void setMotors(float leftSpeed, float rightSpeed);
 	void takeInput();
-	virtual ~Drive();
-	std::shared_ptr<RobotDrive> robotDrive4;
+	//std::shared_ptr<RobotDrive> robotDrive4;
 };
 
 #endif /* SRC_SUBSYSTEMS_DRIVE_H_ */

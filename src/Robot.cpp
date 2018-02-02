@@ -50,9 +50,6 @@ Ramp Robot::ramp;
 
 		REVDigitBoard digitBoard;
 		digitBoard.display(RobotController::GetInputVoltage());
-		//SmartDashboard::PutNumber("Digit Board Test A Button", digitBoard.getButtonA());
-		//SmartDashboard::PutNumber("Digit Board Test B Button", digitBoard.getButtonB());
-		//SmartDashboard::PutNumber("Digit Board Test Pot", digitBoard.getPot());
 	}
 
 	void Robot::TeleopPeriodic() { //continuously runs during teleop portion of the game.
@@ -64,10 +61,6 @@ Ramp Robot::ramp;
 	void Robot::TestPeriodic() {}
 
 	void Robot::AddSmartDashboardItems() {
-		SmartDashboard::PutNumber("Speed Controller 1", RobotMap::speedControllerFL->Get());
-		SmartDashboard::PutNumber("Speed Controller 2", RobotMap::speedControllerFR->Get());
-		SmartDashboard::PutNumber("Speed Controller 3", RobotMap::speedControllerBL->Get());
-		SmartDashboard::PutNumber("Speed Controller 4", RobotMap::speedControllerBR->Get());
 		SmartDashboard::PutNumber("Gyro Angle", RobotMap::driveGyro->GetAngle());
 		SmartDashboard::PutNumber("Joystick X", CommandBase::oi->getDriverJoystick()->GetX());
 		SmartDashboard::PutNumber("Joystick Y", CommandBase::oi->getDriverJoystick()->GetY());

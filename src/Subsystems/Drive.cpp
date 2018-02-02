@@ -6,17 +6,16 @@
 #include "CommandBase.h"
 
 Drive::Drive() : Subsystem("Drive") {
-	// instantiates objects used in this class
-	speedControllerFL = RobotMap::speedControllerFL;
-	speedControllerFR = RobotMap::speedControllerFR;
-	speedControllerBL = RobotMap::speedControllerBL;
-	speedControllerBR = RobotMap::speedControllerBR;
-	robotDrive4 = RobotMap::driveRobotDrive4;
+	//robotDrive4 = RobotMap::driveRobotDrive4;
 	gyro = RobotMap::driveGyro;
 	oldX = 0.0;
 	oldY = 0.0;
 	oldLeftSpeed = 0.0;
 	oldRightSpeed = 0.0;
+	speedControllerFL.SetInverted(SCFL_INVERTED);
+	speedControllerBL.SetInverted(SCBL_INVERTED);
+	speedControllerFR.SetInverted(SCFR_INVERTED);
+	speedControllerBR.SetInverted(SCBR_INVERTED);
 
 }
 void Drive::InitDefaultCommand() {
@@ -34,7 +33,8 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	if (Y > oldY + MAX_CHANGE) Y = oldY + MAX_CHANGE;
 	else if (Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
 
-	robotDrive4->ArcadeDrive(X,Y);// works, X and Y are swapped
+	diffDrive.ArcadeDrive(-Y,X);
+	//robotDrive4->ArcadeDrive(X,Y);// works, X and Y are swapped
 
 	// Store these values for next time.
 	oldX = X;
@@ -47,11 +47,13 @@ void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration lim
 	if (rightSpeed > oldRightSpeed + MAX_CHANGE) rightSpeed = oldRightSpeed + MAX_CHANGE;
 	else if (rightSpeed < oldRightSpeed - MAX_CHANGE) rightSpeed = oldRightSpeed - MAX_CHANGE;
 
-	// set motor speeds
-	speedControllerFL->Set(leftSpeed);
-	speedControllerFR->Set(rightSpeed);
-	speedControllerBL->Set(leftSpeed);
-	speedControllerBR->Set(rightSpeed);
+	diffDrive.TankDrive(leftSpeed, rightSpeed, false);
+
+	SmartDashboard::PutNumber("Speed Controller 0", speedControllerFL.Get());
+	SmartDashboard::PutNumber("Speed Controller 1", speedControllerFR.Get());
+	SmartDashboard::PutNumber("Speed Controller 2", speedControllerBL.Get());
+	SmartDashboard::PutNumber("Speed Controller 3", speedControllerBR.Get());
+
 
 	// Store these values for next time.
 	oldLeftSpeed = leftSpeed;
