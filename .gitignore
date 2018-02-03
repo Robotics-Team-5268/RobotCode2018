@@ -1,3 +1,6 @@
+# Eclipse's language file causes issues
+language.settings.xml
+
 # Compiled Object files
 *.slo
 *.lo
