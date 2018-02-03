@@ -40,6 +40,26 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	oldX = X;
 	oldY = Y;
 }
+
+void Drive::setMotorsArcade(float move, float rotate) {
+	float X = rotate;
+	float Y = move;
+
+	// Limit the acceleration of the robot.
+	// This is done to prevent brownouts.
+	if (X > oldX + MAX_CHANGE) X = oldX + MAX_CHANGE;
+	else if (X < oldX - MAX_CHANGE) X = oldX - MAX_CHANGE;
+	if (Y > oldY + MAX_CHANGE) Y = oldY + MAX_CHANGE;
+	else if (Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
+
+	diffDrive.ArcadeDrive(-Y,X);
+	//robotDrive4->ArcadeDrive(X,Y);// works, X and Y are swapped
+
+	// Store these values for next time.
+	oldX = X;
+	oldY = Y;
+}
+
 void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration limit to reduce gear box wear and tear
 	// Limits acceleration to prevent jerky motion and brownouts
 	if (leftSpeed > oldLeftSpeed + MAX_CHANGE) leftSpeed = oldLeftSpeed + MAX_CHANGE;

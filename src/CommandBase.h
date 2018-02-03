@@ -7,6 +7,8 @@
 #include "WPILib.h"
 #include "Subsystems/Drive.h"
 #include "Subsystems/Ramp.h"
+#include "Subsystems/Sighting.h"
+#include "Subsystems/UDPReceiver.h"
 
 // this class controls how the command system works.
 class CommandBase: public Command
@@ -19,7 +21,8 @@ public:
 	static std::unique_ptr<OI> oi;
 	static std::unique_ptr<Drive> drive;
 	static std::unique_ptr<Ramp> ramp;
-
+	static std::unique_ptr<Sighting> sighting;
+	static std::unique_ptr<UDPReceiver> udp;
 };
 
 #endif /* SRC_COMMANDBASE_H_ */

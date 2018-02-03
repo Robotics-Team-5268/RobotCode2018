@@ -37,6 +37,7 @@ public:
 	//void safetyOff(){robotDrive4->SetSafetyEnabled(false);}
 	void InitDefaultCommand();
 	AnalogGyro* getGyro();
+	void setMotorsArcade(float move, float rotate);
 	void setMotors(float leftSpeed, float rightSpeed);
 	void takeInput();
 	//std::shared_ptr<RobotDrive> robotDrive4;
