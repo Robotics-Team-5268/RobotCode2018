@@ -40,7 +40,7 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	oldX = X;
 	oldY = Y;
 }
-void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration limit to reduce gear box wear and tear
+void Drive::setMotors(float leftSpeed, float rightSpeed){
 	// Limits acceleration to prevent jerky motion and brownouts
 	if (leftSpeed > oldLeftSpeed + MAX_CHANGE) leftSpeed = oldLeftSpeed + MAX_CHANGE;
 	else if (leftSpeed < oldLeftSpeed - MAX_CHANGE) leftSpeed = oldLeftSpeed - MAX_CHANGE;
@@ -49,10 +49,10 @@ void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration lim
 
 	diffDrive.TankDrive(leftSpeed, rightSpeed, false);
 
-	SmartDashboard::PutNumber("Speed Controller 0", speedControllerFL.Get());
-	SmartDashboard::PutNumber("Speed Controller 1", speedControllerFR.Get());
-	SmartDashboard::PutNumber("Speed Controller 2", speedControllerBL.Get());
-	SmartDashboard::PutNumber("Speed Controller 3", speedControllerBR.Get());
+	SmartDashboard::PutNumber("Speed Controller FL", speedControllerFL.Get());
+	SmartDashboard::PutNumber("Speed Controller FR", speedControllerFR.Get());
+	SmartDashboard::PutNumber("Speed Controller BL", speedControllerBL.Get());
+	SmartDashboard::PutNumber("Speed Controller BR", speedControllerBR.Get());
 
 
 	// Store these values for next time.

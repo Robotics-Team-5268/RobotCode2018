@@ -1,8 +1,7 @@
 #include "Robot.h"
 #include "RobotMap.h"
-#include "RevRoboticsDigitBoard.h"
-
 #include <Commands/Scheduler.h>
+#include <REVDigitBoard.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include <RobotController.h>
 
@@ -47,9 +46,6 @@ Ramp Robot::ramp;
 
 	void Robot::TeleopInit() {// runs when the teleop portion of the game starts.
 		CommandBase::drive->getGyro()->Reset();
-
-		REVDigitBoard digitBoard;
-		digitBoard.display(RobotController::GetInputVoltage());
 	}
 
 	void Robot::TeleopPeriodic() { //continuously runs during teleop portion of the game.
