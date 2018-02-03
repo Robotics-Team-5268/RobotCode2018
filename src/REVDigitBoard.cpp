@@ -2,7 +2,7 @@
 #include <Timer.h>
 #include <DigitalInput.h>
 #include <AnalogInput.h>
-#include "RevRoboticsDigitBoard.h"
+#include <RevDigitBoard.h>
 #include <string.h>
 #include <cctype>
 

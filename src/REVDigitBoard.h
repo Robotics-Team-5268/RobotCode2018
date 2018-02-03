@@ -5,8 +5,8 @@
  *      Author: Team5268
  */
 
-#ifndef SRC_REVROBOTICSDIGITBOARD_H_
-#define SRC_REVROBOTICSDIGITBOARD_H_
+#ifndef SRC_REVDIGITBOARD_H_
+#define SRC_REVDIGITBOARD_H_
 
 #include <I2C.h>
 #include <Timer.h>
@@ -48,4 +48,4 @@ private:
 	byte charmap[256];
 };
 
-#endif /* SRC_REVROBOTICSDIGITBOARD_H_ */
+#endif /* SRC_REVDIGITBOARD_H_ */
