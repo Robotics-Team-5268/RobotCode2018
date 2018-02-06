@@ -40,7 +40,7 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	oldX = X;
 	oldY = Y;
 }
-<<<<<<< HEAD
+
 
 void Drive::setMotorsArcade(float move, float rotate) {
 	float X = rotate;
@@ -62,9 +62,7 @@ void Drive::setMotorsArcade(float move, float rotate) {
 }
 
 void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration limit to reduce gear box wear and tear
-=======
-void Drive::setMotors(float leftSpeed, float rightSpeed){
->>>>>>> 259aed2ba5ed04a8432cbb7d161d22a5717a65ec
+
 	// Limits acceleration to prevent jerky motion and brownouts
 	if (leftSpeed > oldLeftSpeed + MAX_CHANGE) leftSpeed = oldLeftSpeed + MAX_CHANGE;
 	else if (leftSpeed < oldLeftSpeed - MAX_CHANGE) leftSpeed = oldLeftSpeed - MAX_CHANGE;
