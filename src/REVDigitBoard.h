@@ -13,7 +13,8 @@
 #include <DigitalInput.h>
 #include <AnalogInput.h>
 #include <string.h>
-
+// this class controls the REV digit board that we use to choose our autonomous mode
+//without having to redeploy every match.
 class REVDigitBoard {
 	typedef unsigned char byte;
 

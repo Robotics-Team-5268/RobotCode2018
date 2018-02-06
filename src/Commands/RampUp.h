@@ -9,7 +9,7 @@
 #define SRC_COMMANDS_RAMPUP_H_
 
 #include <Commands/Command.h>
-
+// This class controls the top two motors on the ramp, since they need to be a different speed than the others.
 class RampUp: public frc::Command {
 private:
 	float oldVal, newVal;
