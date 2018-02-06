@@ -17,6 +17,15 @@ Drive::Drive() : Subsystem("Drive") {
 	speedControllerFR.SetInverted(SCFR_INVERTED);
 	speedControllerBR.SetInverted(SCBR_INVERTED);
 
+	//testSC.ConfigForwardLimitSwitchSurce
+
+	testSC.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 0);
+	//testSC.SetSensorPhase(true);
+
+	// Uncomment to enable follower mode
+	// Verify which Controller is given the encoders before enabling
+	//speedControllerBL.Follow(speedControllerFL);
+	//speedControllerBR.Follow(speedControllerFR);
 }
 void Drive::InitDefaultCommand() {
 	//set the default command
@@ -25,6 +34,11 @@ void Drive::InitDefaultCommand() {
 void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	float X = CommandBase::oi->getDriverJoystick()->GetX();
 	float Y = CommandBase::oi->getDriverJoystick()->GetY();
+	if (CommandBase::oi->getDriverButtonPressed(1)) {
+		testSC.Set(0.25);
+	} else {
+		testSC.Set(0.0);
+	}
 
 	// Limit the acceleration of the robot.
 	// This is done to prevent brownouts.
@@ -35,6 +49,15 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 
 	diffDrive.ArcadeDrive(-Y,X);
 	//robotDrive4->ArcadeDrive(X,Y);// works, X and Y are swapped
+
+	SmartDashboard::PutNumber("Speed Controller 0", speedControllerFL.Get());
+	SmartDashboard::PutNumber("Speed Controller 1", speedControllerFR.Get());
+	SmartDashboard::PutNumber("Speed Controller 2", speedControllerBL.Get());
+	SmartDashboard::PutNumber("Speed Controller 3", speedControllerBR.Get());
+	SmartDashboard::PutNumber("Enc testSC", testSC.Get());
+	SmartDashboard::PutNumber("Enc Quad Position", testSC.GetSensorCollection().GetQuadraturePosition());
+	SmartDashboard::PutNumber("Enc Quad Velocity", testSC.GetSensorCollection().GetQuadratureVelocity());
+	SmartDashboard::PutNumber("Enc Selected Sensor Position", testSC.GetSelectedSensorPosition(0));
 
 	// Store these values for next time.
 	oldX = X;
@@ -80,6 +103,9 @@ void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration lim
 	// Store these values for next time.
 	oldLeftSpeed = leftSpeed;
 	oldRightSpeed = rightSpeed;
+}
+void Drive::setPosition(float distanceInches, float speed) {
+
 }
 AnalogGyro* Drive::getGyro() {
 	return gyro.get();
