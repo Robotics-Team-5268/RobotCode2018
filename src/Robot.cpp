@@ -51,7 +51,6 @@ Ramp Robot::ramp;
 	void Robot::TeleopPeriodic() { //continuously runs during teleop portion of the game.
 		frc::Scheduler::GetInstance()->Run();
 		AddSmartDashboardItems();
-
 	}
 
 	void Robot::TestPeriodic() {}

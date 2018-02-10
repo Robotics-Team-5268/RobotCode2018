@@ -8,6 +8,7 @@
 Drive::Drive() : Subsystem("Drive") {
 	//robotDrive4 = RobotMap::driveRobotDrive4;
 	gyro = RobotMap::driveGyro;
+	//newGyro?
 	oldX = 0.0;
 	oldY = 0.0;
 	oldLeftSpeed = 0.0;
@@ -25,6 +26,9 @@ void Drive::InitDefaultCommand() {
 void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	float X = CommandBase::oi->getDriverJoystick()->GetX();
 	float Y = CommandBase::oi->getDriverJoystick()->GetY();
+
+	newGyro.update();
+	SmartDashboard::PutNumber("New Gyro", newGyro.GetAngle());
 
 	// Limit the acceleration of the robot.
 	// This is done to prevent brownouts.

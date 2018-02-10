@@ -10,6 +10,7 @@ std::shared_ptr<SpeedController> RobotMap::intakeRampSC;
 
 std::shared_ptr<AnalogGyro> RobotMap::driveGyro;
 
+
 void RobotMap::init() {// resets all the speed controllers and other hardware components.
 
     upperRampSC.reset(new Talon(RAMP_SPEED_CONTROLLER_UPPER_CHANNEL));

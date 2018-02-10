@@ -7,6 +7,7 @@
 #include <SpeedControllerGroup.h>
 #include <Talon.h>
 #include "RobotMap.h"
+#include "Subsystems/ITG3200Gyro.h"
 
 //this class controls all the systems for driving. it does not take input from the controller.
 
@@ -29,6 +30,7 @@ private:
 	const float MAX_CHANGE = .05;
 
 	std::shared_ptr<AnalogGyro> gyro;
+	ITG3200_Gyro newGyro;
 
 public:
 	Drive();
