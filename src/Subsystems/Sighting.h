@@ -14,7 +14,6 @@ class Sighting : public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	std::shared_ptr<AnalogGyro> gyro;
 public:
 	Sighting();
 	void InitDefaultCommand();

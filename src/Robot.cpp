@@ -12,7 +12,6 @@ Ramp Robot::ramp;
 
 	void Robot::RobotInit(){// initializes the main things needed for the robot to run.
 		// runs when the robot starts.
-		RobotMap::init();
 		CommandBase::init();
 
 		CommandBase::drive->safetyOff();
@@ -33,7 +32,6 @@ Ramp Robot::ramp;
 	}
 
 	void Robot::AutonomousInit() {// runs when the autonomous portion of the game starts.
-		RobotMap::driveGyro->Reset();
 		//int* selection = autonomousChooser->GetSelected();
 		autonomousCommand.reset(new Autonomous(AutoChooser.AutonomousSelection()));
 		autonomousCommand->Start();
@@ -45,7 +43,7 @@ Ramp Robot::ramp;
 	}
 
 	void Robot::TeleopInit() {// runs when the teleop portion of the game starts.
-		CommandBase::drive->getGyro()->Reset();
+		CommandBase::drive->resetGyro();
 	}
 
 	void Robot::TeleopPeriodic() { //continuously runs during teleop portion of the game.
@@ -56,7 +54,7 @@ Ramp Robot::ramp;
 	void Robot::TestPeriodic() {}
 
 	void Robot::AddSmartDashboardItems() {
-		SmartDashboard::PutNumber("Gyro Angle", RobotMap::driveGyro->GetAngle());
+		SmartDashboard::PutNumber("Gyro Angle", CommandBase::drive->getGyroAngle());
 		SmartDashboard::PutNumber("Joystick X", CommandBase::oi->getDriverJoystick()->GetX());
 		SmartDashboard::PutNumber("Joystick Y", CommandBase::oi->getDriverJoystick()->GetY());
 		SmartDashboard::PutNumber("Left Trigger", CommandBase::oi->getDriverJoystick()->GetRawAxis(LEFT_TRIGGER));

@@ -29,7 +29,7 @@ private:
 	float oldX, oldY, oldLeftSpeed, oldRightSpeed;
 	const float MAX_CHANGE = .05;
 
-	std::shared_ptr<AnalogGyro> gyro;
+	AnalogGyro gyro{GYRO_ANALOG_PORT};
 	ITG3200_Gyro newGyro;
 
 public:
@@ -38,7 +38,11 @@ public:
 	void safetyOff(){diffDrive.SetSafetyEnabled(false);}
 	//void safetyOff(){robotDrive4->SetSafetyEnabled(false);}
 	void InitDefaultCommand();
+
 	AnalogGyro* getGyro();
+	float getGyroAngle();
+	void resetGyro();
+
 	void setMotorsArcade(float move, float rotate);
 	void setMotors(float leftSpeed, float rightSpeed);
 	void takeInput();

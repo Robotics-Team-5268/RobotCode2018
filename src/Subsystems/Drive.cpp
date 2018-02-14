@@ -1,14 +1,11 @@
-#include <Subsystems/Drive.h>
-#include <Commands/DriveWithJoystick.h>
+#include "Subsystems/Drive.h"
+#include "Commands/DriveWithJoystick.h"
 #include "Robot.h"
 #include "Drive.h"
 #include "RobotMap.h"
 #include "CommandBase.h"
 
 Drive::Drive() : Subsystem("Drive") {
-	//robotDrive4 = RobotMap::driveRobotDrive4;
-	gyro = RobotMap::driveGyro;
-	//newGyro?
 	oldX = 0.0;
 	oldY = 0.0;
 	oldLeftSpeed = 0.0;
@@ -85,12 +82,16 @@ void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration lim
 	oldLeftSpeed = leftSpeed;
 	oldRightSpeed = rightSpeed;
 }
-AnalogGyro* Drive::getGyro() {
-	return gyro.get();
-	return nullptr;
-}
-Drive::~Drive() {
-	// TODO Auto-generated destructor stub
 
+AnalogGyro* Drive::getGyro() {
+	return &gyro;
 }
+float Drive::getGyroAngle() {
+	return gyro.GetAngle();
+}
+void Drive::resetGyro() {
+	gyro.Reset();
+}
+
+Drive::~Drive() {}
 

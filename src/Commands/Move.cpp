@@ -34,7 +34,7 @@ void Move::Execute() {
 		pid->SetOutputRange(-.1, .1);
 		pid->SetAbsoluteTolerance(3);
 		pid->Enable();
-		pid->SetSetpoint(drive->getGyro()->GetAngle());
+		pid->SetSetpoint(drive->getGyroAngle());
 		timer->Reset();
 		timer->Start();
 	}

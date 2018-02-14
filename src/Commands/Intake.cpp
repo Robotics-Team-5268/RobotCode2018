@@ -1,10 +1,3 @@
-/*
- * Intake.cpp
- *
- *  Created on: Jan 23, 2018
- *      Author: Team5268
- */
-
 #include <Commands/Intake.h>
 
 #include "../Robot.h"
@@ -42,7 +35,5 @@ void Intake::End() {
 	oldVal = 0.0;
 }
 
-Intake::~Intake() {
-	// TODO Auto-generated destructor stub
-}
+Intake::~Intake() {}
 

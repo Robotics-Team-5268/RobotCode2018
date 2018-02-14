@@ -6,6 +6,7 @@
 #include "OI.h"
 #include "WPILib.h"
 #include "Subsystems/Drive.h"
+#include "Subsystems/LEDController.h"
 #include "Subsystems/Ramp.h"
 #include "Subsystems/Sighting.h"
 #include "Subsystems/UDPReceiver.h"
@@ -20,6 +21,7 @@ public:
 	// Create a single static instance of all of your subsystems
 	static std::unique_ptr<OI> oi;
 	static std::unique_ptr<Drive> drive;
+	static std::unique_ptr<LEDController> leds;
 	static std::unique_ptr<Ramp> ramp;
 	static std::unique_ptr<Sighting> sighting;
 	static std::unique_ptr<UDPReceiver> udp;

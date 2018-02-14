@@ -12,6 +12,8 @@
 #include "Commands/RampUp.h"
 #include "Commands/RampDown.h"
 #include "Commands/Intake.h"
+#include "CommandBase.h"
+#include "Commands/RampWithJoystick.h"
 
 #include <SmartDashboard/SmartDashboard.h>
 
@@ -22,49 +24,51 @@ Ramp::Ramp() :
 
 void Ramp::InitDefaultCommand() {}
 
+
 double Ramp::getUpperRampSC() {
-	return upperRampSC.Get();
+	//return upperRampSC.Get();
+	return rampUpper.Get();
 }
 
 double Ramp::getLowerRampSC() {
-	return lowerRampSC.Get();
+	//return lowerRampSC.Get();
+	return rampLower.Get();
 }
 
 double Ramp::getIntakeRampSC() {
-	return intakeRampSC.Get();
+	return rampIntake.Get();
 }
 
 void Ramp::UpperUp(float Value) {
-	upperRampSC.Set(Value);
-	SmartDashboard::PutNumber("UpperUp", 1.0);
+	rampUpper.Set(Value);
 }
 
 void Ramp::UpperDown(float Value) {
-	upperRampSC.Set(Value);
+	rampUpper.Set(Value);
 }
 
 void Ramp::UpperStop() {
-	upperRampSC.Set(0.0);
+	rampUpper.Set(0.0);
 }
 
 void Ramp::LowerUp(float Value) {
-	lowerRampSC.Set(Value);
+	rampLower.Set(Value);
 }
 
 void Ramp::LowerDown(float Value) {
-	lowerRampSC.Set(Value);
+	rampLower.Set(Value);
 }
 
 void Ramp::LowerStop() {
-	lowerRampSC.Set(0.0);
+	rampLower.Set(0.0);
 }
 
 void Ramp::IntakeOn(float Value) {
-	intakeRampSC.Set(Value);
+	rampIntake.Set(Value);
 }
 
 void Ramp::IntakeOff() {
-	intakeRampSC.Set(0.0);
+	rampIntake.Set(0.0);
 }
 
 Ramp::~Ramp() {

@@ -23,22 +23,27 @@
 #define DRIVE_SPEED_CONTROLLER_BL_CHANNEL 2
 #define DRIVE_SPEED_CONTROLLER_BR_CHANNEL 3
 
-#define RAMP_SPEED_CONTROLLER_UPPER_CHANNEL 4
-#define RAMP_SPEED_CONTROLLER_LOWER_CHANNEL 5
-#define RAMP_SPEED_CONTROLLER_INTAKE_CHANNEL 6
+#define RAMP_SPEED_CONTROLLER_UPPER_LEFT_CHANNEL 4
+#define RAMP_SPEED_CONTROLLER_UPPER_RIGHT_CHANNEL 5
+#define RAMP_SPEED_CONTROLLER_MIDDLE_LEFT_CHANNEL 6
+#define RAMP_SPEED_CONTROLLER_MIDDLE_RIGHT_CHANNEL 7
+#define RAMP_SPEED_CONTROLLER_LOWER_LEFT_CHANNEL 8
+#define RAMP_SPEED_CONTROLLER_LOWER_RIGHT_CHANNEL 9
+#define RAMP_SPEED_CONTROLLER_INTAKE_LEFT_CHANNEL 10
+#define RAMP_SPEED_CONTROLLER_INTAKE_RIGHT_CHANNEL 11
 
 
 // SPI is the better gyro, ANALOG is worse, but used on test bot.
 //#define GYRO_SPI_PORT 							SPI::kOnboardCS0_
 #define GYRO_ANALOG_PORT 0
 
+// LED relays
+#define LED_CAMERA 0
+
 #define SCFL_INVERTED false
 #define SCBL_INVERTED false
 #define SCFR_INVERTED false
 #define SCBR_INVERTED false
-
-#define CAMERA_XRES 640
-#define CAMERA_YRES 480
 
 #define RIGHT_TRIGGER 3
 #define LEFT_TRIGGER 2
@@ -54,23 +59,4 @@
  * floating around.
  */
 
-class RobotMap {
-public:
-	// driving motors
-	/*static std::shared_ptr<SpeedController> speedControllerFL; // Front Left
-	static std::shared_ptr<SpeedController> speedControllerFR; // Front Right
-	static std::shared_ptr<SpeedController> speedControllerBL; // Back Left
-	static std::shared_ptr<SpeedController> speedControllerBR; // Back Right*/
-
-	// ramp motors
-	static std::shared_ptr<SpeedController> upperRampSC;
-	static std::shared_ptr<SpeedController> lowerRampSC;
-	static std::shared_ptr<SpeedController> intakeRampSC;
-
-	//static std::shared_ptr<RobotDrive> driveRobotDrive4; // this is the variable for the drive system as a whole
-
-	static std::shared_ptr<AnalogGyro>driveGyro;
-
-	static void init();
-};
 #endif// ROBOTMAP_H

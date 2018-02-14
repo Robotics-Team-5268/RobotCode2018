@@ -19,7 +19,6 @@ const double tanHoriFOV = 0.666665;
 
 
 Sighting::Sighting() : Subsystem("Sighting") {
-	gyro = RobotMap::driveGyro;
 }
 
 void Sighting::InitDefaultCommand() {
@@ -125,7 +124,7 @@ double Sighting::distanceFromTarget(){
 		double distanceToTarget = IN_BETWEEN_CONTOURS * xres / (2 * pxBetweenContours * tanHoriFOV) * MAGIC_NUMBER;
 		frc::SmartDashboard::PutNumber("Distance to target", distanceToTarget);
 
-		/*double xDistance = distanceToTarget * sin((gyro->GetAngle()*3.14159/180.0));
+		/*double xDistance = distanceToTarget * sin((CommandBase::drive->getGyroAngle()*3.14159/180.0));
 		frc::SmartDashboard::PutNumber("X Distance", xDistance);*/
 		if (distanceToTarget > 200) {
 			frc::SmartDashboard::PutNumber("Distance to target", -1);
