@@ -13,7 +13,6 @@
 #include "Commands/RampDown.h"
 #include "Commands/Intake.h"
 #include "CommandBase.h"
-#include "Commands/RampWithJoystick.h"
 
 #include <SmartDashboard/SmartDashboard.h>
 
