@@ -1,30 +1,18 @@
-/*
- * AutonomousChooser.cpp
- *
- *  Created on: Jan 27, 2018
- *      Author: osfalcons
- */
-
 #include <AutonomousChooser.h>
-#include <RevDigitBoard.h>
+#include "Subsystems/RevDigitBoard.h"
 #include "SuspendableThread.h"
 #include "RobotMap.h"
 #include <string>
 
 AutonomousChooser::AutonomousChooser()
-	: currentSelection( 1 )
-{
+	: currentSelection( 1 ) {
 	SetRunDelay(std::chrono::milliseconds(50));
 	Run();
 }
 
-AutonomousChooser::~AutonomousChooser() {
+AutonomousChooser::~AutonomousChooser() {}
 
-}
-
-
-void AutonomousChooser::OnRun()
-{
+void AutonomousChooser::OnRun() {
 	static REVDigitBoard RDB;
 	static bool OldA = false;
 	static const int timeLimit = 60;
@@ -40,16 +28,14 @@ void AutonomousChooser::OnRun()
 		currentSelection = 1;
 	}
 	OldA = RDB.getButtonA();
-	if(timer <= timeLimit){
+	if (timer <= timeLimit) {
 		RDB.display(std::to_string(currentSelection));
 	} else {
 		RDB.display(RobotController::GetInputVoltage());
 	}
-	if(timer <= timeLimit){
+	if (timer <= timeLimit) {
 		timer++;
 	}
-
-
 }
 
 int AutonomousChooser::AutonomousSelection() {

@@ -1,16 +1,11 @@
-/*
- * ITG3200Gyro.cpp
- *
- *  Created on: Feb 10, 2018
- *      Author: Team5268
- */
-
 #include <Subsystems/ITG3200Gyro.h>
 
 //Initialize the i2c communication and set the gyro to full scale range and 100 Hz update rate
 ITG3200_Gyro::ITG3200_Gyro():
 	i2c(frc::I2C::kOnboard, 0x68) { // Was D0
 	//twiInit(80000);			//Init. SCL speed to 50 kHz
+
+	// The following writes may or may not be needed
 
 	//Set internal clock to 1kHz with 42Hz LPF and Full Scale to 3 for proper operation
 	write(DLPF_FS, DLPF_FS_SEL_0|DLPF_FS_SEL_1|DLPF_CFG_0);
@@ -23,7 +18,6 @@ ITG3200_Gyro::ITG3200_Gyro():
 
 	//Select X gyro PLL for clock source
 	write(PWR_MGM, PWR_MGM_CLK_SEL_0);
-
 }
 
 //Read a register value from the gyro
@@ -87,10 +81,7 @@ double ITG3200_Gyro::GetAngle() const {
 }
 
 double ITG3200_Gyro::GetRate() const {
-	return (double)z/14.375; // Degrees per second, assuming sensitivity is correct
+	return (double)z/14.375; // Degrees per second
 }
 
-ITG3200_Gyro::~ITG3200_Gyro() {
-	// TODO Auto-generated destructor stub
-}
-
+ITG3200_Gyro::~ITG3200_Gyro() {}

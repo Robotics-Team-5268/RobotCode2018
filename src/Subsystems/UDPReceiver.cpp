@@ -13,7 +13,6 @@ UDPReceiver::UDPReceiver() : Subsystem("UDPReceiver")
 	// mRun = true;
 	, mRun(true)
 	, mThread(&UDPReceiver::ThreadBody, this)
-	//, buffer()
 {
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 
@@ -84,7 +83,7 @@ void UDPReceiver::ThreadBody() {
 
 			// Loop through all the contours
 			vector<string> contours = split(msg, ";");
-			for (int i = 0; i < contours.size(); i++) {
+			for (unsigned int i = 0; i < contours.size(); i++) {
 
 				// centerX, centerY, etc, for the current contour
 				vector<string> properties = split(contours[i], ",");
@@ -103,7 +102,7 @@ void UDPReceiver::ThreadBody() {
 vector<string> UDPReceiver::split(string str, string delimiter) {
     vector<string> result;
     while (str.size()) {
-        int index = str.find(delimiter);
+        unsigned int index = str.find(delimiter);
         if (index != string::npos) {
             result.push_back(str.substr(0, index));
             str = str.substr(index + delimiter.size());

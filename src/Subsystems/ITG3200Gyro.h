@@ -1,15 +1,11 @@
-/*
- * ITG3200Gyro.h
- *
- *  Created on: Feb 10, 2018
- *      Author: Team5268
- */
-
 #ifndef SRC_SUBSYSTEMS_ITG3200GYRO_H_
 #define SRC_SUBSYSTEMS_ITG3200GYRO_H_
 
 #include <wpilib.h>
 #include <I2C.h>
+
+// This file would in theory allow us to get our rotation from an ITG3200 Gyro
+// To make it work, we would need an accumulator in its own thread and a calibrate function
 
 class ITG3200_Gyro : Gyro {
 public:

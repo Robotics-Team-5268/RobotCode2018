@@ -5,11 +5,11 @@
 #include "WPILib.h"
 #include "Robot.h"
 
-class LED: public CommandBase
+class LEDToggle: public CommandBase
 {
 public:
-	LED();
-	LED(int x);
+	LEDToggle();
+	LEDToggle(int x);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

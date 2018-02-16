@@ -1,4 +1,3 @@
-
 #include "Commands/Move.h"
 
 Move::Move(float tm, float spd): CommandBase() {
@@ -59,13 +58,11 @@ void Move::End() {
 void Move::Interrupted() {
 	End();
 }
-MovePIDOutput::MovePIDOutput(double sp){
+
+MovePIDOutput::MovePIDOutput(double sp) {
 	speed = sp;
 }
-
-void MovePIDOutput::PIDWrite(double a)
-{
+void MovePIDOutput::PIDWrite(double a) {
 	CommandBase::drive->setMotors(speed + a, speed - a);
 }
 MovePIDOutput::~MovePIDOutput(){}
-

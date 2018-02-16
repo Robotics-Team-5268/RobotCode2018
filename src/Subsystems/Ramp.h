@@ -1,12 +1,4 @@
-/*
- * Ramp.h
- *
- *  Created on: Jan 22, 2018
- *      Author: Team5268
- */
-
-#ifndef SRC_SUBSYSTEMS_RAMP_H_
-#define SRC_SUBSYSTEMS_RAMP_H_
+#pragma once
 
 #include <WPIlib.h>
 #include <Commands/Subsystem.h>
@@ -48,5 +40,3 @@ public:
 	void IntakeOff();
 	virtual ~Ramp();
 };
-
-#endif /* SRC_SUBSYSTEMS_RAMP_H_ */

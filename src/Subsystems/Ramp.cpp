@@ -1,10 +1,3 @@
-/*
- * Ramp.cpp
- *
- *  Created on: Jan 22, 2018
- *      Author: Team5268
- */
-
 #include <Subsystems/Ramp.h>
 #include "Robot.h"
 #include "RobotMap.h"
@@ -16,10 +9,7 @@
 
 #include <SmartDashboard/SmartDashboard.h>
 
-Ramp::Ramp() :
-	frc::Subsystem("Ramp") {
-
-}
+Ramp::Ramp() : frc::Subsystem("Ramp") {}
 
 void Ramp::InitDefaultCommand() {}
 

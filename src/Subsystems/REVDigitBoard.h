@@ -1,13 +1,7 @@
-/*
- * RevRoboticsDigitBoard.h
- *
- *  Created on: Jan 20, 2018
- *      Author: Team5268
- */
-
 #ifndef SRC_REVDIGITBOARD_H_
 #define SRC_REVDIGITBOARD_H_
 
+#include "Commands/Subsystem.h"
 #include <I2C.h>
 #include <Timer.h>
 #include <DigitalInput.h>
@@ -15,7 +9,7 @@
 #include <string.h>
 // this class controls the REV digit board that we use to choose our autonomous mode
 //without having to redeploy every match.
-class REVDigitBoard {
+class REVDigitBoard: public Subsystem {
 	typedef unsigned char byte;
 
 	/*
@@ -31,6 +25,7 @@ class REVDigitBoard {
 	 */
 public:
 	REVDigitBoard();
+	void InitDefaultCommand();
 	void clear();
 	bool getButtonA();
 	bool getButtonB();
