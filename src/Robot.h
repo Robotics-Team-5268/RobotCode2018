@@ -14,6 +14,7 @@
 #include "AutonomousChooser.h"
 #include "Subsystems/Ramp.h"
 #include "Subsystems/Climb.h"
+#include "Subsystems/LEDController.h"
 
 // this is the base class for everything the robot does. It goes through all the stages of the game.
 // if you are looking for the "start" of the code, this would be it.
@@ -23,6 +24,7 @@ public:
 	static Ramp ramp;
 	static Climb climb;
 	static std::unique_ptr<Autonomous> autonomousCommand;
+	static LEDController ledController;
 	//std::unique_ptr<frc::SendableChooser<int*>>  autonomousChooser;
 	LiveWindow *lw = LiveWindow::GetInstance();
 

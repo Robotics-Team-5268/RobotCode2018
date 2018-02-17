@@ -9,7 +9,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-
+// This recieves vision information from the Pi using a thread
 class UDPReceiver : public Subsystem {
 
 private:

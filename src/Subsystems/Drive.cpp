@@ -21,7 +21,7 @@ void Drive::InitDefaultCommand() {
 	SetDefaultCommand(new DriveWithJoystick());
 }
 void Drive::takeInput() { //takes input from controller to drive robot in teleop
-	float X = CommandBase::oi->getDriverJoystick()->GetX() / 1.75; // TODO: Remove before real robot
+	float X = CommandBase::oi->getDriverJoystick()->GetX();
 	float Y = CommandBase::oi->getDriverJoystick()->GetY();
 
 	newGyro.update();

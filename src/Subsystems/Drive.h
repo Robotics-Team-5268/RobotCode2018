@@ -6,6 +6,7 @@
 #include <SpeedController.h>
 #include <SpeedControllerGroup.h>
 #include <Talon.h>
+#include <ctre/Phoenix.h>
 #include "RobotMap.h"
 #include "Subsystems/ITG3200Gyro.h"
 
@@ -17,12 +18,12 @@ private:
 	// for methods that implement subsystem capabilities
 
 	// initializes speed controllers for Drive to use
-	frc::Talon speedControllerFL{DRIVE_SPEED_CONTROLLER_FL_CHANNEL};
-	frc::Talon speedControllerBL{DRIVE_SPEED_CONTROLLER_BL_CHANNEL};
+	WPI_TalonSRX speedControllerFL{DRIVE_SPEED_CONTROLLER_FL_CHANNEL};
+	WPI_TalonSRX speedControllerBL{DRIVE_SPEED_CONTROLLER_BL_CHANNEL};
 	frc::SpeedControllerGroup leftSC{speedControllerFL, speedControllerBL};
 
-	frc::Talon speedControllerFR{DRIVE_SPEED_CONTROLLER_FR_CHANNEL};
-	frc::Talon speedControllerBR{DRIVE_SPEED_CONTROLLER_BR_CHANNEL};
+	WPI_TalonSRX speedControllerFR{DRIVE_SPEED_CONTROLLER_FR_CHANNEL};
+	WPI_TalonSRX speedControllerBR{DRIVE_SPEED_CONTROLLER_BR_CHANNEL};
 	frc::SpeedControllerGroup rightSC{speedControllerFR, speedControllerBR};
 
 	frc::DifferentialDrive diffDrive{leftSC, rightSC};

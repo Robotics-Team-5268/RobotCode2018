@@ -21,6 +21,7 @@ void CommandBase::init() {
 	leds.reset(new LEDController());
 	ramp.reset(new Ramp());
 	udp.reset(new UDPReceiver());
+	climb.reset(new Climb());
 
 	// Keep at the end
 	oi.reset(new OI());

@@ -15,7 +15,7 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	int num;
+	int relayNum;
 };
 
 #endif

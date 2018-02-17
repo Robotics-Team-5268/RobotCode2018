@@ -14,7 +14,9 @@ class RampUp: public frc::Command {
 private:
 	float oldVal, newVal;
 	const float MAX_CHANGE = .01;
+	const float SPEED = .5; // arbitrary number, please change me
 public:
+	RampUp();
 	RampUp(float Value);
 	virtual void Execute();
 	virtual void Initialize();

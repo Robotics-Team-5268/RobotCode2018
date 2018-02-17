@@ -9,7 +9,15 @@
 
 #include <SmartDashboard/SmartDashboard.h>
 
-Ramp::Ramp() : frc::Subsystem("Ramp") {}
+Ramp::Ramp() : frc::Subsystem("Ramp") {
+	rampUL_SC.SetInverted(true);
+	rampUR_SC.SetInverted(true);
+	rampML_SC.SetInverted(false);
+	rampMR_SC.SetInverted(true);
+	rampLL_SC.SetInverted(false);
+	rampLR_SC.SetInverted(true);
+	rampIntake.SetInverted(true); // inverts both intake motors
+}
 
 void Ramp::InitDefaultCommand() {}
 
@@ -28,27 +36,20 @@ double Ramp::getIntakeRampSC() {
 	return rampIntake.Get();
 }
 
-void Ramp::UpperUp(float Value) {
+void Ramp::UpperOn(float Value) {
 	rampUpper.Set(Value);
 }
 
-void Ramp::UpperDown(float Value) {
-	rampUpper.Set(Value);
-}
-
-void Ramp::UpperStop() {
+void Ramp::UpperOff() {
 	rampUpper.Set(0.0);
 }
 
-void Ramp::LowerUp(float Value) {
+void Ramp::LowerOn(float Value) {
 	rampLower.Set(Value);
 }
 
-void Ramp::LowerDown(float Value) {
-	rampLower.Set(Value);
-}
 
-void Ramp::LowerStop() {
+void Ramp::LowerOff() {
 	rampLower.Set(0.0);
 }
 

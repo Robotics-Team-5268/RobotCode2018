@@ -2,7 +2,7 @@
 #define SRC_COMMANDS_RAMPCALIBRATE_H_
 
 #include <Commands/Command.h>
-
+// we use this class to calibrate the motors on the ramp instead of having to use a controller
 class RampCalibrate: public frc::Command {
 private:
 	int counter;

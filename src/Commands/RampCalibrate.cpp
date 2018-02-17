@@ -25,8 +25,8 @@ void RampCalibrate::Execute() {
 	// Clipped sin wave so it sits at +1 and -1 for a while
 	float value = 1.25 * sin(counter/100.0);
 
-	Robot::ramp.UpperUp(value);
-	Robot::ramp.LowerUp(value);
+	Robot::ramp.UpperOn(value);
+	Robot::ramp.LowerOn(value);
 	Robot::ramp.IntakeOn(value);
 }
 
@@ -35,8 +35,8 @@ bool RampCalibrate::IsFinished() {
 }
 
 void RampCalibrate::End() {
-	Robot::ramp.UpperStop();
-	Robot::ramp.LowerStop();
+	Robot::ramp.UpperOff();
+	Robot::ramp.LowerOff();
 	Robot::ramp.IntakeOff();
 	SmartDashboard::PutNumber("UpperUp", 0.0);
 }

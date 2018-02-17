@@ -5,7 +5,7 @@
 #include "../CommandBase.h"
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
-
+// This is a pid to rotate our robot a certain number of degrees
 class Rotate: public CommandBase {
 private:
 	Rotate();

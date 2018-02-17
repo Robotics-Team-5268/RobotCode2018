@@ -24,8 +24,8 @@ OI::OI() {
 
 	driverBtns[1]->WhenPressed(new LEDToggle(LED_CAMERA));
 
-	driverBtns2[0]->WhileHeld(new RampUp(0.25));
-	driverBtns2[1]->WhileHeld(new RampDown(-0.25));
+	driverBtns2[0]->WhileHeld(new RampUp(1.0));
+	driverBtns2[1]->WhileHeld(new RampDown(-1.0));
 	driverBtns2[2]->WhileHeld(new Intake(Intake::intakeForward, 0.25));
 	driverBtns2[3]->WhileHeld(new Intake(Intake::intakeReverse, -0.25));
 

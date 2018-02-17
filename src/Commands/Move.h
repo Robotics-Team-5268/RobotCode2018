@@ -5,7 +5,7 @@
 #include "../CommandBase.h"
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
-
+// this is a PID to move forward for a specified time at a specified speed
 class Move: public CommandBase {
 public:
 	Move( float tm, float spd );

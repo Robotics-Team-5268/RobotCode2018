@@ -1,9 +1,9 @@
 #include <Commands/LEDToggle.h>
 
-LEDToggle::LEDToggle(): num(1) {
+LEDToggle::LEDToggle(): relayNum(1) {
 	Requires(leds.get());
 }
-LEDToggle::LEDToggle(int x): num(x) {
+LEDToggle::LEDToggle(int x): relayNum(x) {
 	Requires(leds.get());
 }
 
@@ -14,7 +14,7 @@ void LEDToggle::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void LEDToggle::Execute() {
-	leds->IsOn(num) ? leds->TurnOff(num) : leds->TurnOn(num);
+	leds->IsOn(relayNum) ? leds->TurnOff(relayNum) : leds->TurnOn(relayNum);
 }
 
 // Make this return true when this Command no longer needs to run execute()

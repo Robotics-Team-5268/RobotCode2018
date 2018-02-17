@@ -6,15 +6,18 @@
 #include <RobotController.h>
 #include "Commands/RampCalibrate.h"
 
+
 std::unique_ptr<Autonomous> Robot::autonomousCommand;
 
 AutonomousChooser Robot::AutoChooser;
 Ramp Robot::ramp;
+LEDController Robot::ledController;
 
 void Robot::RobotInit() {// initializes the main things needed for the robot to run.
 	// runs when the robot starts.
 	CommandBase::init();
 	CommandBase::drive->safetyOff();
+	ledController.TurnOn(LED_PANEL);
 }
 
 void Robot::DisabledInit() {}

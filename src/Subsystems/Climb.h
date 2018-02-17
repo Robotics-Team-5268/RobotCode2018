@@ -4,12 +4,13 @@
 #include <Commands/Subsystem.h>
 #include <SpeedController.h>
 #include <Talon.h>
+#include <ctre/Phoenix.h>
 #include "RobotMap.h"
-
+// This is the subsystem for climbing, it extends a pole to deploy the hook and retracts a rope to pull us up.
 class Climb: public frc::Subsystem {
 private:
-	frc::PWMTalonSRX climbExtendPipe{CLIMB_SPEED_CONTROLLER_EXTEND_CHANNEL};
-	frc::PWMTalonSRX climbRetractRope{CLIMB_SPEED_CONTROLLER_RETRACT_CHANNEL};
+	WPI_TalonSRX climbExtendPipe{CLIMB_SPEED_CONTROLLER_EXTEND_CHANNEL};
+	WPI_TalonSRX climbRetractRope{CLIMB_SPEED_CONTROLLER_RETRACT_CHANNEL};
 public:
 	Climb();
 	virtual void InitDefaultCommand();
