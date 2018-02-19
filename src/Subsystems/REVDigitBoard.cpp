@@ -164,5 +164,3 @@ REVDigitBoard::REVDigitBoard() : Subsystem("REVDigitBoard")
  		i2c.WriteBulk(byte1, sizeof( byte1 ));
  		Wait(0.01);
 	}
-
-

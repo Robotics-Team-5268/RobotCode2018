@@ -1,5 +1,4 @@
-#ifndef SRC_REVDIGITBOARD_H_
-#define SRC_REVDIGITBOARD_H_
+#pragma once
 
 #include "Commands/Subsystem.h"
 #include <I2C.h>
@@ -43,5 +42,3 @@ private:
 	byte charreg[37][2];
 	byte charmap[256];
 };
-
-#endif /* SRC_REVDIGITBOARD_H_ */

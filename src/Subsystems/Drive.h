@@ -1,5 +1,5 @@
-#ifndef SRC_SUBSYSTEMS_DRIVE_H_
-#define SRC_SUBSYSTEMS_DRIVE_H_
+#pragma once
+
 #include <Commands/Subsystem.h>
 #include <WPILib.h>
 #include <Drive/DifferentialDrive.h>
@@ -30,24 +30,23 @@ private:
 	float oldX, oldY, oldLeftSpeed, oldRightSpeed;
 	const float MAX_CHANGE = .05;
 
-	AnalogGyro gyro{GYRO_ANALOG_PORT};
-	ITG3200_Gyro newGyro;
+	//AnalogGyro gyro{GYRO_ANALOG_PORT};
+	ADXRS450_Gyro gyro{GYRO_SPI_PORT};
+
+	//ITG3200_Gyro newGyro;
 
 public:
 	Drive();
 	~Drive();
 	void safetyOff(){diffDrive.SetSafetyEnabled(false);}
-	//void safetyOff(){robotDrive4->SetSafetyEnabled(false);}
 	void InitDefaultCommand();
 
-	AnalogGyro* getGyro();
+	//AnalogGyro* getGyro();
+	ADXRS450_Gyro* getGyro();
 	float getGyroAngle();
 	void resetGyro();
 
 	void setMotorsArcade(float move, float rotate);
 	void setMotors(float leftSpeed, float rightSpeed);
 	void takeInput();
-	//std::shared_ptr<RobotDrive> robotDrive4;
 };
-
-#endif /* SRC_SUBSYSTEMS_DRIVE_H_ */

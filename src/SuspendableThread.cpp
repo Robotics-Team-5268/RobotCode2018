@@ -72,7 +72,7 @@ bool SuspendableThread::Run()
         }
         // If the thread was not constructed then return state to
         // the proper value and indicate an error.
-        catch (system_error)
+        catch (system_error) // To fix warning: const system_error& e
         {
             mState = Terminated;
             ret = false;

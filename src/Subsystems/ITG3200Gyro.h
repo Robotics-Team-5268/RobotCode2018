@@ -6,6 +6,7 @@
 
 // This file would in theory allow us to get our rotation from an ITG3200 Gyro
 // To make it work, we would need an accumulator in its own thread and a calibrate function
+// It is not used for the 2018 robot
 
 class ITG3200_Gyro : Gyro {
 public:

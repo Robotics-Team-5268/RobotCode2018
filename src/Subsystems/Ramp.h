@@ -7,6 +7,7 @@
 #include <SpeedControllerGroup.h>
 #include <ctre/Phoenix.h>
 #include "RobotMap.h"
+
 // This subsystem uses the commands that start with ramp and intake to move the box up and down the ramp
 class Ramp: public frc::Subsystem {
 private:
@@ -23,7 +24,7 @@ private:
 
 	WPI_TalonSRX rampIntakeL_SC{RAMP_SPEED_CONTROLLER_INTAKE_LEFT_CHANNEL};
 	WPI_TalonSRX rampIntakeR_SC{RAMP_SPEED_CONTROLLER_INTAKE_RIGHT_CHANNEL};
-	frc::SpeedControllerGroup rampIntake{rampIntakeL_SC, rampIntakeR_SC};// This is the 2 intake wheels.
+	frc::SpeedControllerGroup rampIntake{rampIntakeL_SC, rampIntakeR_SC};// This is the intake wheels.
 public:
 	Ramp();
 	virtual void InitDefaultCommand();

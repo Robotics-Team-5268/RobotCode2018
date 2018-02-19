@@ -1,4 +1,4 @@
-#include "Commands/MoveAndRotate.h"
+#include <Commands/MoveToTarget.h>
 
 /*
  * There are many variables you may need to change here:
@@ -18,7 +18,7 @@ const double ROTATE_TOLERANCE = 5; //degrees
 const double ROTATE_MAX_SPEED = .057; //between 0 and 1
 
 // float tm, float spd, float amount
-MoveAndRotate::MoveAndRotate(): CommandBase()
+MoveToTarget::MoveToTarget(): CommandBase()
 	, gyroAngle(0), moveOutput(0), rotateOutput(0) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
@@ -28,11 +28,11 @@ MoveAndRotate::MoveAndRotate(): CommandBase()
 }
 
 // Called just before this Command runs the first time
-void MoveAndRotate::Initialize() {
+void MoveToTarget::Initialize() {
 }
 
 // Called repeatedly when this Command is scheduled to run
-void MoveAndRotate::Execute() {
+void MoveToTarget::Execute() {
 	// Move PID
 	if (pidMove) {
 			SmartDashboard::PutNumber("mP", pidMove->GetP());
@@ -78,7 +78,7 @@ void MoveAndRotate::Execute() {
 }
 
 // Receives input from one of the PIDs and adjusts the robot's movement accordingly
-void MoveAndRotate::Set(bool isMove, double a) {
+void MoveToTarget::Set(bool isMove, double a) {
 	if (isMove) {
 		// PID's max output is 10, but speed controller's max input is 1
 		SmartDashboard::PutNumber("moveInput", a);
@@ -94,7 +94,7 @@ void MoveAndRotate::Set(bool isMove, double a) {
 }
 
 // Called once after isFinished returns true
-void MoveAndRotate::End() {
+void MoveToTarget::End() {
 	drive->setMotors(0, 0); //Left speed is first, right speed second
 	pidMove->Disable();
 	pidRotate->Disable();
@@ -106,11 +106,11 @@ void MoveAndRotate::End() {
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void MoveAndRotate::Interrupted() {
+void MoveToTarget::Interrupted() {
 	End();
 }
 
-bool MoveAndRotate::IsFinished() {
+bool MoveToTarget::IsFinished() {
 	return pidMove->OnTarget();
 	// Later this also needs to see if rotate is happy probably
 }
@@ -149,7 +149,7 @@ RotatePIDInput::~RotatePIDInput(){}
 
 
 
-MoveAndRotatePIDOutput::MoveAndRotatePIDOutput(MoveAndRotate* moveAndRotateIn, bool isMoveIn): PIDOutput() {
+MoveAndRotatePIDOutput::MoveAndRotatePIDOutput(MoveToTarget* moveAndRotateIn, bool isMoveIn): PIDOutput() {
 	moveAndRotate = moveAndRotateIn;
 	isMove = isMoveIn; // True if Move PID, false if Rotate PID
 }

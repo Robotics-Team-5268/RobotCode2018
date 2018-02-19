@@ -37,10 +37,9 @@
 #define RAMP_SPEED_CONTROLLER_LOWER_RIGHT_CHANNEL 4
 
 
-
-
-// SPI is the better gyro, ANALOG is worse, but used on test bot.
-//#define GYRO_SPI_PORT 							SPI::kOnboardCS0_
+// SPI (aka digital or WDXRS450) is the better gyro
+// ANALOG is worse, but used on test bot.
+#define GYRO_SPI_PORT SPI::kOnboardCS0 //_
 #define GYRO_ANALOG_PORT 0
 
 // LED relays

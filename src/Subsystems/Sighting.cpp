@@ -18,8 +18,13 @@ const double horiFOV = 0.58800142; // 33.69 degrees
 const double tanHoriFOV = 0.666665;
 
 
-Sighting::Sighting() : Subsystem("Sighting") {
-}
+Sighting::Sighting() : Subsystem("Sighting")
+	, d1(0)
+	, d2(0)
+	, boardAng(0)
+	, pixelWidth1(0)
+	, pixelWidth2(0)
+{}
 
 void Sighting::InitDefaultCommand() {
 	// Set the default command for a subsystem here.

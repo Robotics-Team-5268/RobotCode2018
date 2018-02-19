@@ -1,12 +1,4 @@
-/*
- * AutonomousChooser.h
- *
- *  Created on: Jan 27, 2018
- *      Author: osfalcons
- */
-
-#ifndef SRC_AUTONOMOUSCHOOSER_H_
-#define SRC_AUTONOMOUSCHOOSER_H_
+#pragma once
 
 #include "SuspendableThread.h"
 #include <atomic>   // For atomic variables.
@@ -25,5 +17,3 @@ private:
 protected:
     void OnRun();
 };
-
-#endif /* SRC_AUTONOMOUSCHOOSER_H_ */

@@ -11,13 +11,13 @@
  * of time to be in front of the target.
  */
 
-class MoveAndRotate: public CommandBase {
+class MoveToTarget: public CommandBase {
 private:
 	float gyroAngle;
 	float moveOutput;
 	float rotateOutput;
 public:
-	MoveAndRotate(); // float tm, float spd, float amount
+	MoveToTarget(); // float tm, float spd, float amount
 
 	virtual void Initialize();
 	virtual void Execute();
@@ -43,10 +43,10 @@ public:
 
 class MoveAndRotatePIDOutput: public PIDOutput {
 private:
-	MoveAndRotate* moveAndRotate;
+	MoveToTarget* moveAndRotate;
 	bool isMove;
 public:
-	MoveAndRotatePIDOutput(MoveAndRotate* moveAndRotateIn, bool isMoveIn);
+	MoveAndRotatePIDOutput(MoveToTarget* moveAndRotateIn, bool isMoveIn);
 	virtual ~MoveAndRotatePIDOutput();
 	void PIDWrite(double a);
 };

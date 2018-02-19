@@ -1,9 +1,8 @@
+#include <Commands/RampControl.h>
 #include <Subsystems/Ramp.h>
 #include "Robot.h"
 #include "RobotMap.h"
 #include "CommandBase.h"
-#include "Commands/RampUp.h"
-#include "Commands/RampDown.h"
 #include "Commands/Intake.h"
 #include "CommandBase.h"
 
@@ -16,7 +15,8 @@ Ramp::Ramp() : frc::Subsystem("Ramp") {
 	rampMR_SC.SetInverted(true);
 	rampLL_SC.SetInverted(false);
 	rampLR_SC.SetInverted(true);
-	rampIntake.SetInverted(true); // inverts both intake motors
+	rampIntakeR_SC.SetInverted(true);
+	rampIntakeL_SC.SetInverted(false);
 }
 
 void Ramp::InitDefaultCommand() {}

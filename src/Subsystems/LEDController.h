@@ -7,14 +7,13 @@
 // This turns the LEDs on and off, please do not set them to reverse or you get magic smoke.
 // We don't like magic smoke.
 
-
 class LEDController: public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 
-	frc::Relay ledCamRelay{LED_CAMERA};// relayNum 0
-	frc::Relay ledPanelRelay{LED_PANEL};// relayNum 1
+	frc::Relay ledCamRelay{LED_CAMERA}; // relayNum 0
+	frc::Relay ledPanelRelay{LED_PANEL}; // relayNum 1
 
 	bool ledCam_state = false;
 	bool ledPanel_state = false;

@@ -1,9 +1,8 @@
 #include <Commands/LEDToggle.h>
+#include <Commands/RampControl.h>
 #include <WPILib.h>
 #include "OI.h"
 #include "SmartDashboard/SmartDashboard.h"
-#include "Commands/RampUp.h"
-#include "Commands/RampDown.h"
 #include "Commands/Intake.h"
 #include "Commands/ClimbWithButton.h"
 #include "Robot.h"
@@ -22,15 +21,15 @@ OI::OI() {
 
 	//driverJoystick->SetRumble(GenericHID::kRightRumble, 1);
 
-	driverBtns[1]->WhenPressed(new LEDToggle(LED_CAMERA));
+	//driverBtns[1]->WhenPressed(new LEDToggle(LED_CAMERA));
 
-	driverBtns2[0]->WhileHeld(new RampUp(1.0));
-	driverBtns2[1]->WhileHeld(new RampDown(-1.0));
-	driverBtns2[2]->WhileHeld(new Intake(Intake::intakeForward, 0.25));
-	driverBtns2[3]->WhileHeld(new Intake(Intake::intakeReverse, -0.25));
+	driverBtns2[0]->WhileHeld(new RampControl(1.0)); //A - Make ramp go up to launch cube
+	driverBtns2[1]->WhileHeld(new RampControl(-0.25)); //B - Make ramp go down in case cube is too far up ramp (not for dropping cube off ramp)
+	driverBtns2[2]->WhileHeld(new Intake(1.0)); //X - Make intake go out (may be reversed with below)
+	driverBtns2[3]->WhileHeld(new Intake(-1.0)); //Y - Make intake go in and get the cube on the ramp
 
-	driverBtns2[4]->WhileHeld(new ClimbWithButton(ClimbWithButton::climbExtend, 0.25));
-	driverBtns2[5]->WhileHeld(new ClimbWithButton(ClimbWithButton::climbRetract, -1.0));
+	//driverBtns2[4]->WhileHeld(new ClimbWithButton(ClimbWithButton::climbExtend, 0.25));
+	//driverBtns2[5]->WhileHeld(new ClimbWithButton(ClimbWithButton::climbRetract, -1.0));
 }
 
 std::shared_ptr<Joystick> OI::getDriverJoystick() {

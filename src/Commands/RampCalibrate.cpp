@@ -1,23 +1,14 @@
-/*
- * RampCalibrate.cpp
- *
- *  Created on: Feb 13, 2018
- *      Author: Team5268
- */
-
 #include <Commands/RampCalibrate.h>
 
 #include "../Robot.h"
 #include "../CommandBase.h"
 
-RampCalibrate::RampCalibrate(): frc::Command("RampCalibrate") {
-	Requires(&Robot::ramp);
+RampCalibrate::RampCalibrate(): CommandBase("RampCalibrate") {
 	SetTimeout(5);
 	counter = 0;
 }
 
-void RampCalibrate::Initialize() {
-}
+void RampCalibrate::Initialize() {}
 
 void RampCalibrate::Execute() {
 	counter++;
@@ -25,9 +16,9 @@ void RampCalibrate::Execute() {
 	// Clipped sin wave so it sits at +1 and -1 for a while
 	float value = 1.25 * sin(counter/100.0);
 
-	Robot::ramp.UpperOn(value);
-	Robot::ramp.LowerOn(value);
-	Robot::ramp.IntakeOn(value);
+	CommandBase::ramp->UpperOn(value);
+	CommandBase::ramp->LowerOn(value);
+	CommandBase::ramp->IntakeOn(value);
 }
 
 bool RampCalibrate::IsFinished() {
@@ -35,11 +26,9 @@ bool RampCalibrate::IsFinished() {
 }
 
 void RampCalibrate::End() {
-	Robot::ramp.UpperOff();
-	Robot::ramp.LowerOff();
-	Robot::ramp.IntakeOff();
-	SmartDashboard::PutNumber("UpperUp", 0.0);
+	CommandBase::ramp->UpperOff();
+	CommandBase::ramp->LowerOff();
+	CommandBase::ramp->IntakeOff();
 }
 
 RampCalibrate::~RampCalibrate() {}
-

@@ -1,39 +1,33 @@
 #include <Commands/Intake.h>
-
 #include "../Robot.h"
+#include "../CommandBase.h"
 
-Intake::Intake(intakeDirection dir, float Value)
-	: frc::Command("Intake") {
-	Requires(&Robot::ramp);
-	SetTimeout(1);
-	direction = dir;
+Intake::Intake(float value) : CommandBase("Intake") {
+	//Requires(&Robot::ramp);
 	oldVal = 0.0;
-	newVal = Value;
+	newVal = value;
 }
 
-void Intake::Initialize() {
-}
+void Intake::Initialize() {}
 
 void Intake::Execute() {
 	float curVal = newVal;
-	if (direction == intakeForward) {
-		if (curVal > oldVal + MAX_CHANGE) curVal = oldVal + MAX_CHANGE;
-		Robot::ramp.IntakeOn(curVal);
-	} else if (direction == intakeReverse) {
-		if (curVal < oldVal - MAX_CHANGE) curVal = oldVal - MAX_CHANGE;
-		Robot::ramp.IntakeOn(curVal);
-	}
+
+	if (curVal > oldVal + MAX_CHANGE) curVal = oldVal + MAX_CHANGE;
+	if (curVal < oldVal - MAX_CHANGE) curVal = oldVal - MAX_CHANGE;
+
+	ramp->IntakeOn(curVal);
+
 	oldVal = curVal;
 }
 
 bool Intake::IsFinished() {
-	return IsTimedOut();
+	return false;
 }
 
 void Intake::End() {
-	Robot::ramp.IntakeOff();
+	ramp->IntakeOff();
 	oldVal = 0.0;
 }
 
 Intake::~Intake() {}
-

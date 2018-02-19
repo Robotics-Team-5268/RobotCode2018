@@ -1,5 +1,4 @@
-#ifndef Sighting_H
-#define Sighting_H
+#pragma once
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
@@ -31,5 +30,3 @@ public:
 
 	std::vector<double> area, centerX, centerY, height, width;
 };
-
-#endif  // Sighting_H

@@ -6,19 +6,20 @@
 #include <RobotController.h>
 #include "Commands/RampCalibrate.h"
 
-
 std::unique_ptr<Autonomous> Robot::autonomousCommand;
 
+// This subsystem is here for some reason
+// Most of the subsystems are in CommandBase
 AutonomousChooser Robot::AutoChooser;
-Ramp Robot::ramp;
-LEDController Robot::ledController;
 
-void Robot::RobotInit() {// initializes the main things needed for the robot to run.
+void Robot::RobotInit() { // initializes the main things needed for the robot to run.
 	// runs when the robot starts.
 	CommandBase::init();
 	CommandBase::drive->safetyOff();
-	ledController.TurnOn(LED_PANEL);
+	CommandBase::leds->TurnOn(LED_PANEL);
 }
+
+void Robot::RobotPeriodic() {}
 
 void Robot::DisabledInit() {}
 
@@ -45,6 +46,8 @@ void Robot::TeleopPeriodic() { //continuously runs during teleop portion of the 
 	AddSmartDashboardItems();
 }
 
+void Robot::TestInit() {}
+
 void Robot::TestPeriodic() {}
 
 void Robot::AddSmartDashboardItems() {
@@ -53,9 +56,9 @@ void Robot::AddSmartDashboardItems() {
 	SmartDashboard::PutNumber("Joystick Y", CommandBase::oi->getDriverJoystick()->GetY());
 	SmartDashboard::PutNumber("Left Trigger", CommandBase::oi->getDriverJoystick()->GetRawAxis(LEFT_TRIGGER));
 	SmartDashboard::PutNumber("Right Trigger", CommandBase::oi->getDriverJoystick()->GetRawAxis(RIGHT_TRIGGER));
-	SmartDashboard::PutNumber("upperRampSC", ramp.getUpperRampSC());
-	SmartDashboard::PutNumber("lowerRampSC", ramp.getLowerRampSC());
-	SmartDashboard::PutNumber("intakeRampSC", ramp.getIntakeRampSC());
+	SmartDashboard::PutNumber("upperRampSC", CommandBase::ramp->getUpperRampSC());
+	SmartDashboard::PutNumber("lowerRampSC", CommandBase::ramp->getLowerRampSC());
+	SmartDashboard::PutNumber("intakeRampSC", CommandBase::ramp->getIntakeRampSC());
 	SmartDashboard::PutData("Calibrate ramp", new RampCalibrate());
 }
 

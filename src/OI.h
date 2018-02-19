@@ -1,10 +1,8 @@
 #pragma once
-#ifndef OI_H
-#define OI_H
 
 #include "WPILib.h"
 
-// this class defines the stuff we use to control the robot. OI stands for operator input.
+// This class defines the controllers we use to control the robot during teleop. OI stands for operator input.
 class OI {
 private:
 	std::shared_ptr<Joystick> driverJoystick;
@@ -19,4 +17,3 @@ public:
 	bool getDriverButtonPressed(int btnNum);
 	bool getDriverButtonPressed2(int btnNum);
 };
-#endif

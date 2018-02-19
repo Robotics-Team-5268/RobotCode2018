@@ -1,12 +1,10 @@
-#ifndef LED_H
-#define LED_H
+#pragma once
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 #include "Robot.h"
 
-class LEDToggle: public CommandBase
-{
+class LEDToggle: public CommandBase {
 public:
 	LEDToggle();
 	LEDToggle(int x);
@@ -17,5 +15,3 @@ public:
 	void Interrupted();
 	int relayNum;
 };
-
-#endif

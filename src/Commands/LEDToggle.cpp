@@ -1,6 +1,7 @@
 #include <Commands/LEDToggle.h>
 
-LEDToggle::LEDToggle(): relayNum(1) {
+LEDToggle::LEDToggle(): CommandBase("LEDToggle")
+	, relayNum(1) {
 	Requires(leds.get());
 }
 LEDToggle::LEDToggle(int x): relayNum(x) {
@@ -8,9 +9,7 @@ LEDToggle::LEDToggle(int x): relayNum(x) {
 }
 
 // Called just before this Command runs the first time
-void LEDToggle::Initialize() {
-
-}
+void LEDToggle::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void LEDToggle::Execute() {
@@ -23,12 +22,8 @@ bool LEDToggle::IsFinished() {
 }
 
 // Called once after isFinished returns true
-void LEDToggle::End() {
-
-}
+void LEDToggle::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void LEDToggle::Interrupted() {
-
-}
+void LEDToggle::Interrupted() {}

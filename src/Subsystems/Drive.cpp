@@ -14,18 +14,19 @@ Drive::Drive() : Subsystem("Drive") {
 	speedControllerBL.SetInverted(SCBL_INVERTED);
 	speedControllerFR.SetInverted(SCFR_INVERTED);
 	speedControllerBR.SetInverted(SCBR_INVERTED);
-
 }
+
 void Drive::InitDefaultCommand() {
 	//set the default command
 	SetDefaultCommand(new DriveWithJoystick());
 }
+
 void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	float X = CommandBase::oi->getDriverJoystick()->GetX();
 	float Y = CommandBase::oi->getDriverJoystick()->GetY();
 
-	newGyro.update();
-	SmartDashboard::PutNumber("New Gyro", newGyro.GetAngle());
+	//newGyro.update();
+	//SmartDashboard::PutNumber("New Gyro", newGyro.GetAngle());
 
 	// Limit the acceleration of the robot.
 	// This is done to prevent brownouts.
@@ -35,7 +36,6 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	else if (Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
 
 	diffDrive.ArcadeDrive(-Y,X);
-	//robotDrive4->ArcadeDrive(X,Y);// works, X and Y are swapped
 
 	// Store these values for next time.
 	oldX = X;
@@ -83,7 +83,8 @@ void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration lim
 	oldRightSpeed = rightSpeed;
 }
 
-AnalogGyro* Drive::getGyro() {
+//AnalogGyro* Drive::getGyro() {
+ADXRS450_Gyro* Drive::getGyro() {
 	return &gyro;
 }
 float Drive::getGyroAngle() {
