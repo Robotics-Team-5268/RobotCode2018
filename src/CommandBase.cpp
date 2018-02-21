@@ -6,7 +6,6 @@ std::unique_ptr<OI> CommandBase::oi;
 std::unique_ptr<Drive> CommandBase::drive;
 std::unique_ptr<LEDController> CommandBase::leds;
 std::unique_ptr<Ramp> CommandBase::ramp;
-std::unique_ptr<Climb> CommandBase::climb;
 std::unique_ptr<Sighting> CommandBase::sighting;
 std::unique_ptr<UDPReceiver> CommandBase::udp;
 
@@ -21,7 +20,6 @@ void CommandBase::init() {
 	leds.reset(new LEDController());
 	ramp.reset(new Ramp());
 	udp.reset(new UDPReceiver());
-	climb.reset(new Climb());
 
 	// Keep at the end
 	oi.reset(new OI());

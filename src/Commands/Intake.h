@@ -7,7 +7,7 @@
 class Intake: public CommandBase {
 private:
 	float oldVal, newVal = .25;
-	const float MAX_CHANGE = .01;
+	const float MAX_CHANGE = 2.0;
 public:
 	Intake(float value);
 	virtual void Execute();

@@ -17,6 +17,7 @@ void Robot::RobotInit() { // initializes the main things needed for the robot to
 	CommandBase::init();
 	CommandBase::drive->safetyOff();
 	CommandBase::leds->TurnOn(LED_PANEL);
+	// CommandBase::leds->TurnOn(LED_CAMERA);
 }
 
 void Robot::RobotPeriodic() {}

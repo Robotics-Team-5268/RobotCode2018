@@ -6,7 +6,7 @@
 class RampControl: public CommandBase {
 private:
 	float oldVal, newVal;
-	const float MAX_CHANGE = .01;
+	const float MAX_CHANGE = 2.0;
 public:
 	RampControl(float value, int timeout);
 	RampControl(float value);

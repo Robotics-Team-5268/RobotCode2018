@@ -22,7 +22,7 @@ void Drive::InitDefaultCommand() {
 }
 
 void Drive::takeInput() { //takes input from controller to drive robot in teleop
-	float X = CommandBase::oi->getDriverJoystick()->GetX();
+	float X = CommandBase::oi->getDriverJoystick()->GetX() / 1.75;
 	float Y = CommandBase::oi->getDriverJoystick()->GetY();
 
 	//newGyro.update();
@@ -30,12 +30,18 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 
 	// Limit the acceleration of the robot.
 	// This is done to prevent brownouts.
-	if (X > oldX + MAX_CHANGE) X = oldX + MAX_CHANGE;
-	else if (X < oldX - MAX_CHANGE) X = oldX - MAX_CHANGE;
-	if (Y > oldY + MAX_CHANGE) Y = oldY + MAX_CHANGE;
-	else if (Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
+	if (X > 0 && X > oldX + MAX_CHANGE) X = oldX + MAX_CHANGE;
+	else if (X < 0 && X < oldX - MAX_CHANGE) X = oldX - MAX_CHANGE;
+	//if (Y > oldY + MAX_CHANGE) Y = oldY + MAX_CHANGE;
+	//else if (Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
 
 	diffDrive.ArcadeDrive(-Y,X);
+
+	SmartDashboard::PutNumber("BL", speedControllerBL.Get());
+	SmartDashboard::PutNumber("BL Position", speedControllerBL.GetSensorCollection().GetQuadraturePosition());
+	SmartDashboard::PutNumber("BL Velocity", speedControllerBL.GetSensorCollection().GetQuadratureVelocity());
+	SmartDashboard::PutNumber("BL Sensor Position", speedControllerBL.GetSelectedSensorPosition(0));
+
 
 	// Store these values for next time.
 	oldX = X;
@@ -49,10 +55,8 @@ void Drive::setMotorsArcade(float move, float rotate) {
 
 	// Limit the acceleration of the robot.
 	// This is done to prevent brownouts.
-	if (X > oldX + MAX_CHANGE) X = oldX + MAX_CHANGE;
-	else if (X < oldX - MAX_CHANGE) X = oldX - MAX_CHANGE;
-	if (Y > oldY + MAX_CHANGE) Y = oldY + MAX_CHANGE;
-	else if (Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
+	if (X > 0 && X > oldX + MAX_CHANGE) X = oldX + MAX_CHANGE;
+	else if (X < 0 && X < oldX - MAX_CHANGE) X = oldX - MAX_CHANGE;
 
 	diffDrive.ArcadeDrive(-Y,X);
 	//robotDrive4->ArcadeDrive(X,Y);// works, X and Y are swapped
@@ -65,7 +69,7 @@ void Drive::setMotorsArcade(float move, float rotate) {
 void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration limit to reduce gear box wear and tear
 
 	// Limits acceleration to prevent jerky motion and brownouts
-	if (leftSpeed > oldLeftSpeed + MAX_CHANGE) leftSpeed = oldLeftSpeed + MAX_CHANGE;
+	if (leftSpeed > 0 && oldLeftSpeed + MAX_CHANGE) leftSpeed = oldLeftSpeed + MAX_CHANGE;
 	else if (leftSpeed < oldLeftSpeed - MAX_CHANGE) leftSpeed = oldLeftSpeed - MAX_CHANGE;
 	if (rightSpeed > oldRightSpeed + MAX_CHANGE) rightSpeed = oldRightSpeed + MAX_CHANGE;
 	else if (rightSpeed < oldRightSpeed - MAX_CHANGE) rightSpeed = oldRightSpeed - MAX_CHANGE;

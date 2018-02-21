@@ -9,12 +9,12 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 Ramp::Ramp() : frc::Subsystem("Ramp") {
-	rampUL_SC.SetInverted(true);
-	rampUR_SC.SetInverted(true);
-	rampML_SC.SetInverted(false);
-	rampMR_SC.SetInverted(true);
-	rampLL_SC.SetInverted(false);
-	rampLR_SC.SetInverted(true);
+	rampUL_SC.SetInverted(false);
+	rampUR_SC.SetInverted(false);
+	rampML_SC.SetInverted(true);
+	rampMR_SC.SetInverted(false);
+	rampLL_SC.SetInverted(true);
+	rampLR_SC.SetInverted(false);
 	rampIntakeR_SC.SetInverted(true);
 	rampIntakeL_SC.SetInverted(false);
 }

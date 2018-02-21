@@ -24,7 +24,7 @@ void RampControl::Execute() {
 	if (curVal > oldVal + MAX_CHANGE) curVal = oldVal + MAX_CHANGE;
 	if (curVal < oldVal - MAX_CHANGE) curVal = oldVal - MAX_CHANGE;
 
-	//ramp->UpperOn(curVal); // Upper 2 wheels on ramp
+	ramp->UpperOn(curVal); // Upper 2 wheels on ramp
 	ramp->LowerOn(curVal); // Lower 4 wheels on ramp
 	oldVal = curVal;
 }
@@ -34,7 +34,7 @@ bool RampControl::IsFinished() {
 }
 
 void RampControl::End() {
-	//ramp->UpperOff();
+	ramp->UpperOff();
 	ramp->LowerOff();
 	oldVal = 0.0;
 }

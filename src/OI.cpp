@@ -4,7 +4,6 @@
 #include "OI.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/Intake.h"
-#include "Commands/ClimbWithButton.h"
 #include "Robot.h"
 
 OI::OI() {
@@ -24,9 +23,9 @@ OI::OI() {
 	//driverBtns[1]->WhenPressed(new LEDToggle(LED_CAMERA));
 
 	driverBtns2[0]->WhileHeld(new RampControl(1.0)); //A - Make ramp go up to launch cube
-	driverBtns2[1]->WhileHeld(new RampControl(-0.25)); //B - Make ramp go down in case cube is too far up ramp (not for dropping cube off ramp)
-	driverBtns2[2]->WhileHeld(new Intake(1.0)); //X - Make intake go out (may be reversed with below)
-	driverBtns2[3]->WhileHeld(new Intake(-1.0)); //Y - Make intake go in and get the cube on the ramp
+	driverBtns2[1]->WhileHeld(new RampControl(-.25)); //B - Make ramp go down in case cube is too far up ramp (not for dropping cube off ramp)
+	driverBtns2[2]->WhileHeld(new Intake(-1.0)); //X - Make intake go in and get the cube on the ramp
+	driverBtns2[3]->WhileHeld(new Intake(1.0)); //Y - Make intake go out
 
 	//driverBtns2[4]->WhileHeld(new ClimbWithButton(ClimbWithButton::climbExtend, 0.25));
 	//driverBtns2[5]->WhileHeld(new ClimbWithButton(ClimbWithButton::climbRetract, -1.0));

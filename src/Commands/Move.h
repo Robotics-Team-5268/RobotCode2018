@@ -6,6 +6,7 @@
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
 // this is a PID to move forward for a specified time at a specified speed
+// it uses the gyro to make sure it goes straight
 class Move: public CommandBase {
 public:
 	Move( float tm, float spd );
