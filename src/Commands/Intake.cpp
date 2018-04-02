@@ -2,10 +2,9 @@
 #include "../Robot.h"
 #include "../CommandBase.h"
 
-Intake::Intake(float value) : CommandBase("Intake") {
-	//Requires(&Robot::ramp);
-	oldVal = 0.0;
-	newVal = value;
+Intake::Intake(float value) : CommandBase("Intake")
+	, oldVal ( 0.0 )
+	, newVal ( value ) {
 }
 
 void Intake::Initialize() {}
@@ -13,8 +12,8 @@ void Intake::Initialize() {}
 void Intake::Execute() {
 	float curVal = newVal;
 
-	if (curVal > oldVal + MAX_CHANGE) curVal = oldVal + MAX_CHANGE;
-	if (curVal < oldVal - MAX_CHANGE) curVal = oldVal - MAX_CHANGE;
+	//if (curVal > oldVal + MAX_CHANGE) curVal = oldVal + MAX_CHANGE;
+	//if (curVal < oldVal - MAX_CHANGE) curVal = oldVal - MAX_CHANGE;
 
 	ramp->IntakeOn(curVal);
 

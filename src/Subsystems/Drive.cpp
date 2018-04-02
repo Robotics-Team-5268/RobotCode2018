@@ -22,7 +22,12 @@ void Drive::InitDefaultCommand() {
 }
 
 void Drive::takeInput() { //takes input from controller to drive robot in teleop
-	float X = CommandBase::oi->getDriverJoystick()->GetX() / 1.75;
+	float leftSpeed = -CommandBase::oi->getDriverJoystick()->GetRawAxis(1);
+	float rightSpeed = -CommandBase::oi->getDriverJoystick()->GetRawAxis(5);
+
+	Drive::setMotors(rightSpeed, leftSpeed);
+
+	/*float X = CommandBase::oi->getDriverJoystick()->GetX() / 1.75;
 	float Y = CommandBase::oi->getDriverJoystick()->GetY();
 
 	//newGyro.update();
@@ -35,6 +40,9 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 	//if (Y > oldY + MAX_CHANGE) Y = oldY + MAX_CHANGE;
 	//else if (Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
 
+
+
+	diffDrive.TankDrive();
 	diffDrive.ArcadeDrive(-Y,X);
 
 	SmartDashboard::PutNumber("BL", speedControllerBL.Get());
@@ -45,7 +53,7 @@ void Drive::takeInput() { //takes input from controller to drive robot in teleop
 
 	// Store these values for next time.
 	oldX = X;
-	oldY = Y;
+	oldY = Y;*/
 }
 
 
@@ -69,10 +77,10 @@ void Drive::setMotorsArcade(float move, float rotate) {
 void Drive::setMotors(float leftSpeed, float rightSpeed){// add acceleration limit to reduce gear box wear and tear
 
 	// Limits acceleration to prevent jerky motion and brownouts
-	if (leftSpeed > 0 && oldLeftSpeed + MAX_CHANGE) leftSpeed = oldLeftSpeed + MAX_CHANGE;
-	else if (leftSpeed < oldLeftSpeed - MAX_CHANGE) leftSpeed = oldLeftSpeed - MAX_CHANGE;
-	if (rightSpeed > oldRightSpeed + MAX_CHANGE) rightSpeed = oldRightSpeed + MAX_CHANGE;
-	else if (rightSpeed < oldRightSpeed - MAX_CHANGE) rightSpeed = oldRightSpeed - MAX_CHANGE;
+	if (leftSpeed > 0 && leftSpeed > oldLeftSpeed + MAX_CHANGE) leftSpeed = oldLeftSpeed + MAX_CHANGE;
+	else if (leftSpeed < 0 && leftSpeed <  oldLeftSpeed - MAX_CHANGE) leftSpeed = oldLeftSpeed - MAX_CHANGE;
+	if (rightSpeed > 0 && rightSpeed > oldRightSpeed + MAX_CHANGE) rightSpeed = oldRightSpeed + MAX_CHANGE;
+	else if (rightSpeed < 0 && rightSpeed < oldRightSpeed - MAX_CHANGE) rightSpeed = oldRightSpeed - MAX_CHANGE;
 
 	diffDrive.TankDrive(leftSpeed, rightSpeed, false);
 

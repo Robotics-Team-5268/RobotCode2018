@@ -15,7 +15,7 @@ const int xres = 640; // x resolution of Microsoft Life Camera
 // Camera's field of view in radians
 //const double vertFOV = 0.36397895; //20.85 degrees
 const double horiFOV = 0.58800142; // 33.69 degrees
-const double tanHoriFOV = 0.666665;
+const double tanHoriFOV = 0.666665; // (in degrees for some reason)
 
 
 Sighting::Sighting() : Subsystem("Sighting")
@@ -31,41 +31,10 @@ void Sighting::InitDefaultCommand() {
 }
 
 /*
- * Handles split contours and contours that
- * are unreasonably different in size (in theory, not in practice)
+ * Handles contours that are unreasonably different in size
+ * (in theory, not in practice)
  */
 void Sighting::cleanContours() {
-	//if (area.size() < 1) return -1; // No contours
-
-	// This for loop checks
-	// if there is a set of broken contours from the peg
-	// by seeing if their X values are close to each other
-	// Commented out because it doesn't do anything because
-	// output is never used. It should merge the contours.
-
-	/*
-	int topCutContour = 0;
-	int bottomCutContour = 0;
-
-	for (uint i = 0; i < area.size(); i++) { // area.size() gives the number of contours
-		for (uint j = i + 1; j < area.size(); j++) {
-			// Check if within margin of error (meaning the contour are too close together)
-			// This should mean the spring is splitting a contour into two on top of each other
-			if (fabs(centerX[j] - centerX[i]) < X_ERROR_MARGIN) {
-				if (centerY[j] > centerY[i]) { // Find the top contour
-					topCutContour = j;
-					bottomCutContour = i;
-				} else {
-					bottomCutContour = j;
-					topCutContour = i;
-				}
-				i = area.size(); // jump to end of loop
-				j = area.size();
-			}
-		}
-	}*/
-
-
 	// This for loop runs through all of the contours and ensures that they
 	// are at similar heights and that they are similar in area.
 
