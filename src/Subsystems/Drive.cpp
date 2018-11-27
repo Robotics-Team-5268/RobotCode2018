@@ -22,47 +22,11 @@ void Drive::InitDefaultCommand() {
 }
 
 void Drive::takeInput() { //takes input from controller to drive robot in teleop
-	/*float leftSpeed = -CommandBase::oi->getDriverJoystick()->GetRawAxis(1);
+
+	float leftSpeed = -CommandBase::oi->getDriverJoystick()->GetRawAxis(1);
 	float rightSpeed = -CommandBase::oi->getDriverJoystick()->GetRawAxis(5);
 
-	Drive::setMotors(rightSpeed, leftSpeed);*/
-
-	/*float POV = CommandBase::oi->getDriverJoystick()->GetPOV(0);
-
-	float X = 0.0, Y = 0.0;
-	if (POV == 0) {
-		X = 1.0;
-	} else if (POV == 4) {
-		X = -1.0;
-	} else if (POV == 2) {
-		Y = 1.0;
-	} else if (POV == 6) {
-		Y = -1.0;
-	}*/
-
-	float X = CommandBase::oi->getDriverJoystick()->GetX() / 1.75;
-	float Y = CommandBase::oi->getDriverJoystick()->GetY();
-
-	// Limit the acceleration of the robot.
-	// This is done to prevent brownouts.
-	if (X > 0 && X > oldX + MAX_CHANGE) X = oldX + MAX_CHANGE;
-	else if (X < 0 && X < oldX - MAX_CHANGE) X = oldX - MAX_CHANGE;
-	if (Y > 0 && Y > oldY + MAX_CHANGE) Y = oldY + MAX_CHANGE;
-	else if (Y < 0 && Y < oldY - MAX_CHANGE) Y = oldY - MAX_CHANGE;
-
-
-
-	diffDrive.ArcadeDrive(-Y,X);
-
-	SmartDashboard::PutNumber("BL", speedControllerBL.Get());
-	SmartDashboard::PutNumber("BL Position", speedControllerBL.GetSensorCollection().GetQuadraturePosition());
-	SmartDashboard::PutNumber("BL Velocity", speedControllerBL.GetSensorCollection().GetQuadratureVelocity());
-	SmartDashboard::PutNumber("BL Sensor Position", speedControllerBL.GetSelectedSensorPosition(0));
-
-
-	// Store these values for next time.
-	oldX = X;
-	oldY = Y;
+	Drive::setMotors(rightSpeed, leftSpeed);
 }
 
 
