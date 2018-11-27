@@ -22,7 +22,7 @@ OI::OI() {
 
 	//driverBtns[1]->WhenPressed(new LEDToggle(LED_CAMERA));
 
-	driverBtns2[0]->WhileHeld(new RampControl(1.0)); //A - Make ramp go up to launch cube
+	driverBtns2[0]->WhileHeld(new RampControl(0.75)); //A - Make ramp go up to launch cube
 	driverBtns2[1]->WhileHeld(new RampControl(-.25)); //B - Make ramp go down in case cube is too far up ramp (not for dropping cube off ramp)
 	driverBtns2[2]->WhileHeld(new Intake(-1.0)); //X - Make intake go in and get the cube on the ramp
 	driverBtns2[3]->WhileHeld(new Intake(1.0)); //Y - Make intake go out

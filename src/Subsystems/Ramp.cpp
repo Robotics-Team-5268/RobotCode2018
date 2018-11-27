@@ -17,6 +17,12 @@ Ramp::Ramp() : frc::Subsystem("Ramp") {
 	rampLR_SC.SetInverted(false);
 	rampIntakeR_SC.SetInverted(true);
 	rampIntakeL_SC.SetInverted(false);
+
+	// Trying to fix intake speed
+	rampIntakeR_SC.ConfigPeakCurrentLimit(20, 500);
+	rampIntakeR_SC.ConfigContinuousCurrentLimit(20, 500);
+	rampIntakeR_SC.EnableCurrentLimit(true);
+	rampIntakeL_SC.EnableCurrentLimit(false);
 }
 
 void Ramp::InitDefaultCommand() {}

@@ -24,7 +24,11 @@ void RampControl::Execute() {
 	if (curVal > oldVal + MAX_CHANGE) curVal = oldVal + MAX_CHANGE;
 	if (curVal < oldVal - MAX_CHANGE) curVal = oldVal - MAX_CHANGE;
 
-	ramp->UpperOn(curVal); // Upper 2 wheels on ramp
+	if (curVal > 0) {
+		ramp->UpperOn(curVal * .5); // Upper 2 wheels on ramp
+	} else {
+		ramp->UpperOn(curVal); // Upper 2 wheels on ramp
+	}
 	ramp->LowerOn(curVal); // Lower 4 wheels on ramp
 	oldVal = curVal;
 }

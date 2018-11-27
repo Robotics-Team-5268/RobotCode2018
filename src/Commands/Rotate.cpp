@@ -1,9 +1,6 @@
 
 #include "Commands/Rotate.h"
 
-Rotate::Rotate(): CommandBase(), degrees(), gyroAngle(), pid() {
-
-}
 Rotate::Rotate(float amount): CommandBase(), gyroAngle(0) {
 	Command::Requires(drive.get());
 	pid = nullptr;
@@ -25,14 +22,14 @@ void Rotate::Execute() {
 		SmartDashboard::PutNumber("F", pid->GetF());
 	}else{
 		pid = new PIDController(
-							SmartDashboard::GetNumber("P", .03),
-							SmartDashboard::GetNumber("I", .005),
-							SmartDashboard::GetNumber("D", .01),
+							SmartDashboard::GetNumber("P", .005),
+							SmartDashboard::GetNumber("I", .0007),
+							SmartDashboard::GetNumber("D", .012),
 							SmartDashboard::GetNumber("F", 0),
 							drive->getGyro(),
 							new RotatePIDOutput());
 		pid->SetInputRange(-180, 180);
-		pid->SetOutputRange(-.5, .5);
+		pid->SetOutputRange(-.25, .25);
 		pid->SetAbsoluteTolerance(3);
 		pid->Enable();
 		pid->SetSetpoint(degrees);

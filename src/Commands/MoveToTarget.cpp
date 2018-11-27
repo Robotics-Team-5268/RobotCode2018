@@ -48,7 +48,7 @@ void MoveToTarget::Execute() {
 							SmartDashboard::GetNumber("mF", 0),
 							new MovePIDInput(),
 							new MoveAndRotatePIDOutput(this, true));
-		pidMove->SetInputRange(0, 1000);
+		pidMove->SetInputRange(0, 1000);//what units am I in?
 		pidMove->SetOutputRange(-MOVE_MAX_SPEED, MOVE_MAX_SPEED); // Min/max value PID is allowed to output
 		pidMove->SetAbsoluteTolerance(MOVE_TOLERANCE); // How far off the PID is ok with being in inches
 		pidMove->Enable();

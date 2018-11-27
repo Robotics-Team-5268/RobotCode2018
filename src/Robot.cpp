@@ -29,7 +29,9 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {// runs when the autonomous portion of the game starts.
-	autonomousCommand.reset(new Autonomous(AutoChooser.AutonomousSelection()));
+	CommandBase::drive->resetGyro();
+	//autonomousCommand.reset(new Autonomous(AutoChooser.AutonomousSelection()));//AutoChooser.AutonomousSelection() @TODO
+	autonomousCommand.reset(new Autonomous(3));
 	autonomousCommand->Start();
 }
 
